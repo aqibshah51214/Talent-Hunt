@@ -11,7 +11,10 @@ import SwiftUI
 struct Talent_HuntApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            
+            //AccountView()
+            //EventCreateView()
+            AdminDashboardView()
         }
     }
 }

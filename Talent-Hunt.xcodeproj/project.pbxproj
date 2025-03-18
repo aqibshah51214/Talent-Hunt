@@ -7,18 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52395F8E2D7DE06900F2072C /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52395F8D2D7DE06900F2072C /* AccountView.swift */; };
+		52395F902D7DF00F00F2072C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52395F8F2D7DF00F00F2072C /* LoginView.swift */; };
+		5263C6092D8092EF00150615 /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C6082D8092EF00150615 /* CustomImagePicker.swift */; };
+		5263C60B2D80948B00150615 /* EventCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C60A2D80948B00150615 /* EventCreateView.swift */; };
+		5263C60D2D8096CA00150615 /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C60C2D8096CA00150615 /* CheckboxView.swift */; };
+		5263C6112D8195AB00150615 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C6102D8195AB00150615 /* DatePickerView.swift */; };
+		5263C6152D83858100150615 /* EventCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C6142D83858100150615 /* EventCreate.swift */; };
+		5263C61B2D87816400150615 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C61A2D87816400150615 /* TimePickerView.swift */; };
+		526544352D7EDAF0009FC9C0 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526544342D7EDAF0009FC9C0 /* CreateAccount.swift */; };
+		526544382D7EDCE6009FC9C0 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526544372D7EDCE5009FC9C0 /* APIHelper.swift */; };
+		5265443A2D7EF666009FC9C0 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526544392D7EF666009FC9C0 /* DropDownView.swift */; };
+		5265443C2D7F6E0F009FC9C0 /* AdminDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265443B2D7F6E0F009FC9C0 /* AdminDashboardView.swift */; };
 		52F0E5CB2D58D5C100D7E92B /* Talent_HuntApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0E5CA2D58D5C100D7E92B /* Talent_HuntApp.swift */; };
-		52F0E5CD2D58D5C100D7E92B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0E5CC2D58D5C100D7E92B /* ContentView.swift */; };
 		52F0E5CF2D58D5C200D7E92B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52F0E5CE2D58D5C200D7E92B /* Assets.xcassets */; };
 		52F0E5D22D58D5C200D7E92B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52F0E5D12D58D5C200D7E92B /* Preview Assets.xcassets */; };
+		52F0E5DE2D58D6D100D7E92B /* SignUPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0E5DD2D58D6D100D7E92B /* SignUPView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52395F8D2D7DE06900F2072C /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		52395F8F2D7DF00F00F2072C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5263C6082D8092EF00150615 /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
+		5263C60A2D80948B00150615 /* EventCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreateView.swift; sourceTree = "<group>"; };
+		5263C60C2D8096CA00150615 /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
+		5263C6102D8195AB00150615 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		5263C6142D83858100150615 /* EventCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreate.swift; sourceTree = "<group>"; };
+		5263C61A2D87816400150615 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		526544342D7EDAF0009FC9C0 /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
+		526544372D7EDCE5009FC9C0 /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
+		526544392D7EF666009FC9C0 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
+		5265443B2D7F6E0F009FC9C0 /* AdminDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDashboardView.swift; sourceTree = "<group>"; };
 		52F0E5C72D58D5C100D7E92B /* Talent-Hunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Talent-Hunt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F0E5CA2D58D5C100D7E92B /* Talent_HuntApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Talent_HuntApp.swift; sourceTree = "<group>"; };
-		52F0E5CC2D58D5C100D7E92B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		52F0E5CE2D58D5C200D7E92B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52F0E5D12D58D5C200D7E92B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		52F0E5DD2D58D6D100D7E92B /* SignUPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUPView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,9 +56,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		526544332D7EDAB3009FC9C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				526544342D7EDAF0009FC9C0 /* CreateAccount.swift */,
+				5263C6082D8092EF00150615 /* CustomImagePicker.swift */,
+				5263C6142D83858100150615 /* EventCreate.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		526544362D7EDCBE009FC9C0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				526544372D7EDCE5009FC9C0 /* APIHelper.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		52F0E5BE2D58D5C100D7E92B = {
 			isa = PBXGroup;
 			children = (
+				526544362D7EDCBE009FC9C0 /* API */,
+				526544332D7EDAB3009FC9C0 /* Model */,
+				52F0E5DC2D58D6AA00D7E92B /* View */,
 				52F0E5C92D58D5C100D7E92B /* Talent-Hunt */,
 				52F0E5C82D58D5C100D7E92B /* Products */,
 			);
@@ -52,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				52F0E5CA2D58D5C100D7E92B /* Talent_HuntApp.swift */,
-				52F0E5CC2D58D5C100D7E92B /* ContentView.swift */,
 				52F0E5CE2D58D5C200D7E92B /* Assets.xcassets */,
 				52F0E5D02D58D5C200D7E92B /* Preview Content */,
 			);
@@ -65,6 +109,22 @@
 				52F0E5D12D58D5C200D7E92B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		52F0E5DC2D58D6AA00D7E92B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52395F8D2D7DE06900F2072C /* AccountView.swift */,
+				52F0E5DD2D58D6D100D7E92B /* SignUPView.swift */,
+				52395F8F2D7DF00F00F2072C /* LoginView.swift */,
+				526544392D7EF666009FC9C0 /* DropDownView.swift */,
+				5265443B2D7F6E0F009FC9C0 /* AdminDashboardView.swift */,
+				5263C60A2D80948B00150615 /* EventCreateView.swift */,
+				5263C60C2D8096CA00150615 /* CheckboxView.swift */,
+				5263C6102D8195AB00150615 /* DatePickerView.swift */,
+				5263C61A2D87816400150615 /* TimePickerView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +197,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52F0E5CD2D58D5C100D7E92B /* ContentView.swift in Sources */,
+				526544382D7EDCE6009FC9C0 /* APIHelper.swift in Sources */,
+				52395F8E2D7DE06900F2072C /* AccountView.swift in Sources */,
+				52F0E5DE2D58D6D100D7E92B /* SignUPView.swift in Sources */,
+				5263C61B2D87816400150615 /* TimePickerView.swift in Sources */,
+				5263C60D2D8096CA00150615 /* CheckboxView.swift in Sources */,
+				5263C60B2D80948B00150615 /* EventCreateView.swift in Sources */,
+				5265443A2D7EF666009FC9C0 /* DropDownView.swift in Sources */,
+				5263C6112D8195AB00150615 /* DatePickerView.swift in Sources */,
+				5263C6152D83858100150615 /* EventCreate.swift in Sources */,
+				526544352D7EDAF0009FC9C0 /* CreateAccount.swift in Sources */,
+				52395F902D7DF00F00F2072C /* LoginView.swift in Sources */,
 				52F0E5CB2D58D5C100D7E92B /* Talent_HuntApp.swift in Sources */,
+				5265443C2D7F6E0F009FC9C0 /* AdminDashboardView.swift in Sources */,
+				5263C6092D8092EF00150615 /* CustomImagePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
