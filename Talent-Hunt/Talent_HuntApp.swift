@@ -13,8 +13,8 @@ struct Talent_HuntApp: App {
         WindowGroup {
             
             //AccountView()
-            //EventCreateView()
-            AdminDashboardView()
+            EventCreateView()
+            //AdminDashboardView()
         }
     }
 }

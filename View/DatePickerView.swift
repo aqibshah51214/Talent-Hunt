@@ -43,7 +43,7 @@ struct DatePickerView: View {
                         }
                     }
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.white.opacity(0.8)).shadow(radius: 2))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.white.opacity(0.2)).shadow(radius: 2))
                     .padding(.horizontal, 1)
 
 //                    if showDatePicker {

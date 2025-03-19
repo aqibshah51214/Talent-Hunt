@@ -15,6 +15,7 @@
 		5263C6112D8195AB00150615 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C6102D8195AB00150615 /* DatePickerView.swift */; };
 		5263C6152D83858100150615 /* EventCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C6142D83858100150615 /* EventCreate.swift */; };
 		5263C61B2D87816400150615 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C61A2D87816400150615 /* TimePickerView.swift */; };
+		5263C61D2D89915900150615 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C61C2D89915900150615 /* Rules.swift */; };
 		526544352D7EDAF0009FC9C0 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526544342D7EDAF0009FC9C0 /* CreateAccount.swift */; };
 		526544382D7EDCE6009FC9C0 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526544372D7EDCE5009FC9C0 /* APIHelper.swift */; };
 		5265443A2D7EF666009FC9C0 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526544392D7EF666009FC9C0 /* DropDownView.swift */; };
@@ -34,6 +35,7 @@
 		5263C6102D8195AB00150615 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		5263C6142D83858100150615 /* EventCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreate.swift; sourceTree = "<group>"; };
 		5263C61A2D87816400150615 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		5263C61C2D89915900150615 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		526544342D7EDAF0009FC9C0 /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		526544372D7EDCE5009FC9C0 /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		526544392D7EF666009FC9C0 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				526544342D7EDAF0009FC9C0 /* CreateAccount.swift */,
 				5263C6082D8092EF00150615 /* CustomImagePicker.swift */,
 				5263C6142D83858100150615 /* EventCreate.swift */,
+				5263C61C2D89915900150615 /* Rules.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				52F0E5CB2D58D5C100D7E92B /* Talent_HuntApp.swift in Sources */,
 				5265443C2D7F6E0F009FC9C0 /* AdminDashboardView.swift in Sources */,
 				5263C6092D8092EF00150615 /* CustomImagePicker.swift in Sources */,
+				5263C61D2D89915900150615 /* Rules.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

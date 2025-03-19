@@ -1,3 +1,10 @@
+//
+//  EventCreateView.swift
+//  Talent-Hunt
+//
+//  Created by MacBook Pro on 11/03/2025.
+//
+
 import SwiftUI
 
 struct EventCreateView: View {
@@ -9,11 +16,17 @@ struct EventCreateView: View {
     @State private var sem4 = false
     @State private var sem5 = false
     @State private var sem6 = false
+    @State private var semester1 = "1st"
+    @State private var semester2 = "2nd"
+    @State private var semester3 = "3rd"
+    @State private var semester4 = "4th"
+    @State private var semester5 = "5th"
+    @State private var semester6 = "6th"
     @State private var showEventDatePicker = false
     @State private var selectedEventDate = Date()
     @State private var contactImage: UIImage? = nil
     @State private var isImagePickerPresented: Bool = false
-    
+    @State private var listofrules = [String]()
     // Registration Dates
     @State private var showRegStartDatePicker = false
     @State private var regStartDate = Date()
@@ -33,19 +46,18 @@ struct EventCreateView: View {
     var body: some View {
         ZStack {
             // Background Gradient
-            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.purple.opacity(0.8)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.7), Color.purple.opacity(0.5)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             
             ScrollView {
+              
                 VStack(spacing: 20) {
-                    // Title
                     Text("Create Event")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .padding(.top, 40)
-                        .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
-                    
+
                     // Title Input Field
                     VStack(alignment: .leading) {
                         Text("Event Title")
@@ -53,12 +65,12 @@ struct EventCreateView: View {
                             .foregroundColor(.black)
                         TextField("Enter title", text: $title)
                             .padding()
-                            .background(Color.white.opacity(0.9))
+                            .background(Color.white.opacity(0.6))
                             .cornerRadius(12)
-                           // .foregroundColor(.black)
+                            .foregroundColor(.black)
                     }
                     .padding(.horizontal)
-                    
+
                     // Description Input Field
                     VStack(alignment: .leading) {
                         Text("Description")
@@ -66,75 +78,69 @@ struct EventCreateView: View {
                             .foregroundColor(.black)
                         TextField("Enter description", text: $description)
                             .padding()
-                            .background(Color.white.opacity(0.9))
+                            .background(Color.white.opacity(0.6))
                             .cornerRadius(12)
-                            //.foregroundColor(.black)
+                            .foregroundColor(.black)
                     }
                     .padding(.horizontal)
-                    
+
                     // Rules Checkboxes
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Rules")
                             .font(.headline)
                             .foregroundColor(.black)
                         HStack {
-                            CheckboxView(SelectedText: $sem1, text: "1st")
-                            CheckboxView(SelectedText: $sem2, text: "2nd")
-                            CheckboxView(SelectedText: $sem3, text: "3rd")
-                            CheckboxView(SelectedText: $sem4, text: "4th")
-                            CheckboxView(SelectedText: $sem5, text: "5th")
-                            CheckboxView(SelectedText: $sem6, text: "6th")
+                            CheckboxView(SelectedText: $sem1, text: semester1)
+                            CheckboxView(SelectedText: $sem2, text: semester2)
+                            CheckboxView(SelectedText: $sem3, text: semester3)
+                            CheckboxView(SelectedText: $sem4, text: semester4)
+                            CheckboxView(SelectedText: $sem5, text: semester5)
+                            CheckboxView(SelectedText: $sem6, text: semester6)
                         }
                     }
                     .padding()
-                    .background(Color.white.opacity(0.9))
+                    .background(Color.white.opacity(0.6))
                     .cornerRadius(12)
                     .padding(.horizontal)
                     
-                    // Event Date Picker
-                    DatePickerView(title: "Event Date", date: $EventDate, showDatePicker: $showEventDate)
-                        //.padding(.horizontal)
+                    VStack {
+                        DatePickerView(title: "Event Date", date: $EventDate, showDatePicker: $showEventDate)
+                    }
                     
-                    // Registration Date Pickers
                     VStack {
                         Text("Registration Date")
                             .font(.headline)
                             .foregroundColor(.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal)
+                            .offset(x: -100, y: -13)
                         
                         DatePickerView(title: "Start Date", date: $regStartDate, showDatePicker: $showRegStartDatePicker)
                         DatePickerView(title: "End Date", date: $regEndDate, showDatePicker: $showRegEndDatePicker)
                     }
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white.opacity(0.3))
+                    .border(Color.gray, width: 1)
                     .padding()
-                    .background(Color.white.opacity(0.9))
-                    .cornerRadius(12)
-                    .padding(.horizontal)
                     
-                    // Event Time Pickers
                     VStack {
                         Text("Event Time")
                             .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal)
+                            .foregroundColor(.black)
+                            .offset(x: -100, y: -13)
                         
                         TimePickerView(title: "Start Time", date: $EventStartTime, showDatePicker: $showEventStartTimePicker)
                         TimePickerView(title: "End Time", date: $EventEndTime, showDatePicker: $showEventEndTimePicker)
                     }
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white.opacity(0.3))
+                    .border(Color.gray, width: 1)
                     .padding()
-                    .background(Color.white.opacity(0.9))
-                    .cornerRadius(12)
-                    .padding(.horizontal)
                     
-                    // Image Picker
                     VStack {
                         if let image = contactImage {
                             Image(uiImage: image)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 200)
-                                .cornerRadius(12)
                         } else {
                             Text("No Image Selected")
                                 .foregroundColor(.black)
@@ -151,11 +157,14 @@ struct EventCreateView: View {
                             .foregroundColor(.white)
                             .cornerRadius(12)
                         }
-                    }
+                    }.sheet(isPresented: $isImagePickerPresented) {
+                        CustomImagePicker(contactImage: $contactImage)
+                           }
                    
                     
                     // Submit Button
                     Button(action: {
+                        AddInListRules()
                         createEvent()
                         showSuccessAlert.toggle()
                     }) {
@@ -177,17 +186,23 @@ struct EventCreateView: View {
                             dismissButton: .default(Text("OK"))
                         )
                     }
-                    
+                    .padding(.horizontal)
+
                     Spacer()
                 }
             }
+
+//            if showEventDate || showRegStartDatePicker || showRegEndDatePicker || showEventStartTimePicker || showEventEndTimePicker {
+//                Color.black.opacity(0.4)
+//                    .edgesIgnoringSafeArea(.all)
+//            }
         }
     }
-    
+
     private func createEvent() {
         print("Event Created")
         let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm:ss"
+           timeFormatter.dateFormat = "HH:mm:ss"
         let event = EventCreate(
             Id: 1,
             Title: title,
@@ -201,38 +216,109 @@ struct EventCreateView: View {
         )
         
         do {
+            // Encode the event to JSON
             let jsonData = try JSONEncoder().encode(event)
             let jsonString = String(data: jsonData, encoding: .utf8)
-            print("JSON Sent to API: \(jsonString!)")
+            print("JSON Sent to API: \(jsonString ?? "Invalid JSON")")
             
+            // Prepare parameters for the API call
             var params = [String: String]()
             params["submitInfo"] = jsonString!
             
             let api = APIHelper()
-            if let EventImage = contactImage {
-                let mediaImage = Media(withImage: EventImage, forKey: "image", imageName: "event.jpg")
+            
+            if let contactImage = contactImage {
+                // Create a media image object
+                let mediaImage = Media(withImage: contactImage, forKey: "image", imageName: "event.jpg")
                 var images = [Media]()
                 images.append(mediaImage!)
                 
+                // Upload images and handle the response
                 api.uploadImages(images: images, parameters: params, endPoint: "Main/CreateEvent") { response in
-                    print(response.responseMessage)
-                    showSuccessAlert.toggle()
+                    // Handle the response inside the closure
+                    let responseMessage = response.responseMessage
+                    print("Response Message: \(responseMessage)")
+                    
+                    // Decode the response data if needed
+                    if let responseData = response.responseData {
+                        do {
+                            
+                            let events = try JSONDecoder().decode(EventCreate.self, from: responseData)
+                            print("Decoded events: \(events)")
+                           
+                            AddRules(eventid: events.Id, list: listofrules)
+                                
+                           
+                            // Perform any additional actions with the decoded data
+                            // For example, update the UI or save the data
+                        } catch {
+                            print("Failed to decode response data: \(error)")
+                        }
+                    }
+                    
+                    // Show success alert
+                    DispatchQueue.main.async {
+                        showSuccessAlert.toggle()
+                    }
                 }
             }
         } catch {
             print("Error encoding event: \(error)")
         }
     }
-    
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter
-    }
-}
+    private func AddInListRules() {
+        if(sem1){
+            listofrules.append(semester1)
+        }
+        if(sem2){
+            listofrules.append(semester2)
+        }
+        if(sem3){
+            listofrules.append(semester3)
+        }
+        if(sem4){
+            listofrules.append(semester4)
+        }
+        if(sem5){
+            listofrules.append(semester5)
+        }
+        if(sem6){
+            listofrules.append(semester6)
+        }
+      }
+    private func AddRules(eventid:Int,list:[String]) {
+        let rulesobject=Rules(Id: 0, Eventid: eventid, Rules: list)
+        do {
+            let jsonData = try JSONEncoder().encode(rulesobject)
+            let jsonString = String(data: jsonData, encoding: .utf8)
+            print("JSON Sent to API: \(jsonString!)")  // Debugging log
+         
 
+                let api = APIHelper()
+                
+                api.postMethodCall(controllerName: "Main", actionName: "AddRules", httpBody: jsonData) { response in
+                   
+                        if response.responseCode == 200 {
+                            print("Add Successful: \(response.responseMessage)")
+                           
+                        } else {
+                            print("Failed: \(response.responseMessage)")
+                        }
+                    
+                }
+            } catch {
+                print("Error encoding  Rules: \(error.localizedDescription)")
+            }
+    }
+    private var dateFormatter: DateFormatter {
+          let formatter = DateFormatter()
+          formatter.dateStyle = .medium
+          return formatter
+      }
+}
 struct EventCreateView_Previews: PreviewProvider {
     static var previews: some View {
         EventCreateView()
+ 
     }
 }
