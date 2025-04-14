@@ -12,9 +12,12 @@ struct Talent_HuntApp: App {
     var body: some Scene {
         WindowGroup {
             
-            //AccountView()
-            EventCreateView()
-            //AdminDashboardView()
+            AccountView()
+           // EventCreateView()
+         // AdminDashboardView()
+          //CommitteeMemberView()
+            
+          
         }
     }
 }

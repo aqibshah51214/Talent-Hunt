@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "createaccount.jpg",
+      "filename" : "projectimage2-2.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "projectimage2-1.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "projectimage2.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }

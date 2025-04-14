@@ -15,25 +15,47 @@ struct SignUPView: View {
     @State public var selectedOption="Select"
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.8), Color.purple.opacity(0.9)]),
-                           startPoint: .topLeading,
-                           endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+//            LinearGradient(gradient: Gradient(colors: [Color.white.opacity(0.1), Color.white.opacity(0.1)]),
+//                           startPoint: .topLeading,
+//                           endPoint: .bottomTrailing)
+//                .ignoresSafeArea()
+            
         
             VStack {
                 Text("Create Account")
-                    .font(.system(size: 50))
-                    .foregroundColor(.white)
+                    .font(.system(size: 35))
+                    .foregroundColor(.black)
+                    .bold()
                     .shadow(radius: 5)
                     .padding(.bottom, 20)
-                    .offset(y: -30)
+                    .offset(x:10, y: -100)
+                    .padding(.horizontal, 50)
                 
                 VStack(spacing: 20) {
-  
+                    HStack {
+                        Image(systemName: "person")
+                            .foregroundColor(.black)
+                        TextField("Name", text: $name)
+                            .disableAutocorrection(true)
+                            .onChange(of: email) { newValue in
+                                nameError = isValidName(newValue) ? "" : "Invalid email format"
+                            }
+                    }
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
+                    .shadow(radius: 3)
+                    
+                    if !emailError.isEmpty {
+                        Text(emailError)
+                            .foregroundColor(.red)
+                            .font(.caption)
+                            .padding(.leading, 10)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                     // Email Field with Validation
                     HStack {
                         Image(systemName: "envelope")
-                            .foregroundColor(.gray)
+                            .foregroundColor(.black)
                         TextField("Email", text: $email)
                             .disableAutocorrection(true)
                             .onChange(of: email) { newValue in
@@ -55,7 +77,7 @@ struct SignUPView: View {
                     // Password Field with Validation
                     HStack {
                         Image(systemName: "lock")
-                            .foregroundColor(.gray)
+                            .foregroundColor(.black)
                         SecureField("Password", text: $password)
                             .disableAutocorrection(true)
                             .onChange(of: password) { newValue in
@@ -79,7 +101,7 @@ struct SignUPView: View {
                     // Confirm Password Field
                     HStack {
                         Image(systemName: "key")
-                            .foregroundColor(.gray)
+                            .foregroundColor(.black)
                         SecureField("Confirm Password", text: $confirmpassword)
                             .disableAutocorrection(true)
                     }
@@ -96,8 +118,7 @@ struct SignUPView: View {
                 Button(action: {
                     print("Selected Role: \(selectedOption)")
                     if emailError.isEmpty && passwordError.isEmpty && password == confirmpassword {
-                        let account = CraeteAccount(Id: 1, Password: password, Email: email, Role:selectedOption)
-                            
+                        let account = CraeteAccount(Id: 1, Password: password, Name: name, Email: email, Role: selectedOption)
                         do {
                             let jsonData = try JSONEncoder().encode(account)
                             let jsonString = String(data: jsonData, encoding: .utf8)
@@ -139,8 +160,9 @@ struct SignUPView: View {
                 
                 // Already Have an Account?
                 HStack {
-                    Text("Already have an account?")
-                        .foregroundColor(.white)
+                    Text("Already have an account...?")
+                        .foregroundColor(.black)
+                    //Spacer()
                     Button(action: {
                         withAnimation{
                         navigateToLogin = true
@@ -148,15 +170,16 @@ struct SignUPView: View {
                         }
                     }, label: {
                         Text("Login")
-                            .foregroundColor(.black)
+                            .foregroundColor(.green)
                     })
                        
                  }
                 .padding(.top, 10)
                 
                 Spacer()
+              
             }
-            .frame(maxHeight: 670, alignment: .center)
+            .frame(maxHeight: 890, alignment: .center)
             
             // Navigation Link to Login
             
@@ -189,9 +212,9 @@ struct SignUPView: View {
 // Preview
 struct SignUPView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+           
             SignUPView()
-        }
+        
        // .previewInterfaceOrientation(.portrait)
     }
 }

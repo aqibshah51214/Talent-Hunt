@@ -5,24 +5,24 @@ struct LoginView: View {
     @State private var password: String = ""
     @State private var navigateToAdmin = false
     @State private var isUserValid: Bool = false
-
+    @State private var showTabView = false
     @State private var signuplist = [CraeteAccount]()
 
     var body: some View {
         
             ZStack {
-                LinearGradient(
-                    gradient: Gradient(colors: [Color.blue.opacity(1.2), Color.purple.opacity(0.9)]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-                .ignoresSafeArea()
+//                LinearGradient(
+//                    gradient: Gradient(colors: [Color.blue.opacity(1.2), Color.purple.opacity(0.9)]),
+//                    startPoint: .topLeading,
+//                    endPoint: .bottomTrailing
+//                )
+//                .ignoresSafeArea()
 
                 VStack(spacing: 25) {
                     Text("Welcome Back!")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
 
                     // Email Input Field
                     VStack(alignment: .leading) {
@@ -32,7 +32,7 @@ struct LoginView: View {
 
                         HStack {
                             Image(systemName: "envelope")
-                                .foregroundColor(.gray)
+                                .foregroundColor(.black)
                             TextField("Enter your email", text: $email)
                                 .padding(.vertical,12)
                                 .keyboardType(.emailAddress)
@@ -40,7 +40,7 @@ struct LoginView: View {
                                 
                         }
                         .padding(.horizontal)
-                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.white.opacity(0.9)))
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.white.opacity(2)))
                         .shadow(radius: 3)
                     }
                     .padding(.horizontal)
@@ -53,12 +53,12 @@ struct LoginView: View {
 
                         HStack {
                             Image(systemName: "lock")
-                                .foregroundColor(.gray)
+                                .foregroundColor(.black)
                             SecureField("Enter your password", text: $password)
                                 .padding(.vertical,12)  // **Reduced padding to decrease height**
                                   }
                                   .padding(.horizontal)
-                                  .background(RoundedRectangle(cornerRadius: 10).fill(Color.white.opacity(0.9)))
+                                  .background(RoundedRectangle(cornerRadius: 10).fill(Color.white.opacity(2)))
                                   .shadow(radius: 3)
                     }
                     .padding(.horizontal)
@@ -67,7 +67,7 @@ struct LoginView: View {
                     Button(action: {
                         if getdata(email: email, password: password) {
                             navigateToAdmin.toggle()
-                            
+                           // showTabView = true
                         }
                     }) {
                         Text("Login")
@@ -80,7 +80,9 @@ struct LoginView: View {
                             .shadow(radius: 5)
                     }
                     .padding(.top, 10)
-
+//                    .sheet(isPresented: $showTabView) {
+//                        TabitemView()
+//                    }
                     // Forgot Password
                     Button(action: {
                         print("Forgot Password tapped")
@@ -95,6 +97,10 @@ struct LoginView: View {
                     {
                         EmptyView()
                     }
+                    
+                    
+                   
+
                 }
                // .padding()
             }
@@ -134,5 +140,5 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-    }
+     }
 }

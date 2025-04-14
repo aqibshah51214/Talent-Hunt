@@ -8,21 +8,22 @@ struct AccountView: View {
         NavigationView {
             ZStack {
                 // Gradient Background
-                LinearGradient(
-                    gradient: Gradient(colors: [Color.blue.opacity(1.2), Color.purple.opacity(0.9)]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-                .ignoresSafeArea()
+//                LinearGradient(
+//                    gradient: Gradient(colors: [Color.blue.opacity(1.2), Color.purple.opacity(0.9)]),
+//                    startPoint: .topLeading,
+//                    endPoint: .bottomTrailing
+//                )
+//                .ignoresSafeArea()
 
                 VStack(spacing: 20) {
                     // Logo or Image
-                    Image("createaccount")
+                    Image("projectimage2")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 300, height: 200)
+                        .frame(width: 1000, height: 400)
                         .cornerRadius(10)
-                        .shadow(radius: 5)
+                       // .shadow(radius: 5)
+                    
 
                     // App Title
                     VStack(spacing: 8) {
@@ -33,18 +34,18 @@ struct AccountView: View {
                             .font(.largeTitle)
                             .italic()
                             .fontWeight(.bold)
-                            .foregroundColor(.white) // Changed to white for better contrast
+                            .foregroundColor(.black) // Changed to white for better contrast
                             .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 0)
                     }
 
                     // Description Text
-                    Text("Every talent has a moment to shine in the hunt for success. The best talent is hidden, waiting to be found in the hunt.")
+                    Text("Every talent has a moment to shine in the hunt for success The best talent is hidden, waiting to be found in the hunt.")
                         .font(.body)
-                        .foregroundColor(.white) // Changed to white for better contrast
+                        .foregroundColor(.gray) // Changed to white for better contrast
                         .italic()
                         .multilineTextAlignment(.center)
-                        .padding(.horizontal, 20)
-                        .padding()
+                        .padding(.horizontal,300)
+                       // .padding()
                         .padding()
                    // Spacer()
 
@@ -100,5 +101,6 @@ struct AccountView: View {
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
         AccountView()
+           
     }
 }

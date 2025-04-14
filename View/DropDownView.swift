@@ -35,7 +35,8 @@ struct DropDownView: View {
                                .foregroundColor(.gray)
                        }
                        .padding(.horizontal)
-                       .background(RoundedRectangle(cornerRadius: 8).fill(Color.white))
+                       .padding(.vertical,10)
+                       .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
                        .shadow(color: Color.black.opacity(0.1), radius: 5)
                    }
                    

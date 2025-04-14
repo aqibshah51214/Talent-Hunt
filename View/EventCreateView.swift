@@ -10,6 +10,7 @@ import SwiftUI
 struct EventCreateView: View {
     @State private var title = ""
     @State private var description = ""
+    @State private var navigateToAssignMamber=false
     @State private var sem1 = false
     @State private var sem2 = false
     @State private var sem3 = false
@@ -46,8 +47,8 @@ struct EventCreateView: View {
     var body: some View {
         ZStack {
             // Background Gradient
-            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.7), Color.purple.opacity(0.5)]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
+//            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.7), Color.purple.opacity(0.5)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+//                .ignoresSafeArea()
             
             ScrollView {
               
@@ -65,44 +66,40 @@ struct EventCreateView: View {
                             .foregroundColor(.black)
                         TextField("Enter title", text: $title)
                             .padding()
-                            .background(Color.white.opacity(0.6))
+                            .background(Color.white.opacity(4.0))
                             .cornerRadius(12)
+                           // .border(.gray, width: 1)
                             .foregroundColor(.black)
+                            .shadow(color:.black.opacity(0.3), radius: 3, x: 1, y: 1)
                     }
+                  
+                    //  .background(Color.white.opacity(4.0))
+                  
                     .padding(.horizontal)
 
                     // Description Input Field
-                    VStack(alignment: .leading) {
-                        Text("Description")
-                            .font(.headline)
-                            .foregroundColor(.black)
-                        TextField("Enter description", text: $description)
-                            .padding()
-                            .background(Color.white.opacity(0.6))
-                            .cornerRadius(12)
-                            .foregroundColor(.black)
-                    }
-                    .padding(.horizontal)
+                 
 
                     // Rules Checkboxes
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Rules")
-                            .font(.headline)
-                            .foregroundColor(.black)
-                        HStack {
-                            CheckboxView(SelectedText: $sem1, text: semester1)
-                            CheckboxView(SelectedText: $sem2, text: semester2)
-                            CheckboxView(SelectedText: $sem3, text: semester3)
-                            CheckboxView(SelectedText: $sem4, text: semester4)
-                            CheckboxView(SelectedText: $sem5, text: semester5)
-                            CheckboxView(SelectedText: $sem6, text: semester6)
-                        }
-                    }
-                    .padding()
-                    .background(Color.white.opacity(0.6))
-                    .cornerRadius(12)
-                    .padding(.horizontal)
-                    
+//                    VStack(alignment: .leading, spacing: 10) {
+//                        Text("Rules")
+//                            .font(.headline)
+//                            .foregroundColor(.black)
+//                        HStack {
+//                            CheckboxView(SelectedText: $sem1, text: semester1)
+//                            CheckboxView(SelectedText: $sem2, text: semester2)
+//                            CheckboxView(SelectedText: $sem3, text: semester3)
+//                            CheckboxView(SelectedText: $sem4, text: semester4)
+//                            CheckboxView(SelectedText: $sem5, text: semester5)
+//                            CheckboxView(SelectedText: $sem6, text: semester6)
+//                        }
+//
+//                    }
+//                    .padding()
+//                    .background(Color.white.opacity(0.6))
+//                    .cornerRadius(12)
+//                    .padding(.horizontal)
+//
                     VStack {
                         DatePickerView(title: "Event Date", date: $EventDate, showDatePicker: $showEventDate)
                     }
@@ -111,7 +108,7 @@ struct EventCreateView: View {
                         Text("Registration Date")
                             .font(.headline)
                             .foregroundColor(.black)
-                            .offset(x: -100, y: -13)
+                            .offset(x: -130, y: -24)
                         
                         DatePickerView(title: "Start Date", date: $regStartDate, showDatePicker: $showRegStartDatePicker)
                         DatePickerView(title: "End Date", date: $regEndDate, showDatePicker: $showRegEndDatePicker)
@@ -125,7 +122,7 @@ struct EventCreateView: View {
                         Text("Event Time")
                             .font(.headline)
                             .foregroundColor(.black)
-                            .offset(x: -100, y: -13)
+                            .offset(x: -153, y: -24)
                         
                         TimePickerView(title: "Start Time", date: $EventStartTime, showDatePicker: $showEventStartTimePicker)
                         TimePickerView(title: "End Time", date: $EventEndTime, showDatePicker: $showEventEndTimePicker)
@@ -134,7 +131,19 @@ struct EventCreateView: View {
                     .background(Color.white.opacity(0.3))
                     .border(Color.gray, width: 1)
                     .padding()
-                    
+                    VStack(alignment: .leading) {
+                        Text("Description")
+                            .font(.headline)
+                            .foregroundColor(.black)
+                        TextField("Enter description", text: $description)
+                            .padding()
+                            .background(Color.white.opacity(4.0))
+                            .cornerRadius(12)
+                           // .border(.gray, width: 1)
+                            .foregroundColor(.black)
+                            .shadow(color:.black.opacity(0.3), radius: 3, x: 1, y: 1)
+                    }
+                    .padding(.horizontal)
                     VStack {
                         if let image = contactImage {
                             Image(uiImage: image)
@@ -152,10 +161,10 @@ struct EventCreateView: View {
                                 Image(systemName: "photo")
                                 Text("Select Image").bold()
                             }
-                            .padding()
-                            .background(Color.blue.opacity(0.8))
-                            .foregroundColor(.white)
-                            .cornerRadius(12)
+                           // .padding()
+//                            .background(Color.blue.opacity(0.8))
+//                            .foregroundColor(.white)
+//                            .cornerRadius(12)
                         }
                     }.sheet(isPresented: $isImagePickerPresented) {
                         CustomImagePicker(contactImage: $contactImage)
@@ -187,11 +196,14 @@ struct EventCreateView: View {
                         )
                     }
                     .padding(.horizontal)
-
-                    Spacer()
+                    
+                   
                 }
+                Spacer()
             }
-
+//            NavigationLink(destination: CommitteeMemberView(), isActive: $navigateToAssignMamber) {
+//                EmptyView()
+//            }
 //            if showEventDate || showRegStartDatePicker || showRegEndDatePicker || showEventStartTimePicker || showEventEndTimePicker {
 //                Color.black.opacity(0.4)
 //                    .edgesIgnoringSafeArea(.all)
@@ -319,6 +331,7 @@ struct EventCreateView: View {
 struct EventCreateView_Previews: PreviewProvider {
     static var previews: some View {
         EventCreateView()
+       
  
     }
 }
