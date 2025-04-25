@@ -20,7 +20,6 @@ struct AssignedMember: Codable, Hashable {
     let MemberIdList: [Int]? // Corrected property name
     var Status: String?
    // Added type annotation and default value
-
-    // Custom initializer
-    
 }
+    // Custom initializer
+

@@ -38,16 +38,18 @@ struct CommitteeMemberView: View {
                                         .fill(Color.white)
                                         .shadow(radius: 3))
                         .contentShape(Rectangle()) // Make the entire row tappable
-                        .onTapGesture {
+                        .onTapGesture{
                             item.selectvalue.toggle()
-                            if(item.selectvalue==true){
-                            listofmemberid.append(item.Id)
+
+                            if item.selectvalue {
+                                listofmemberid.append(item.Id)
+                            } else {
+                                listofmemberid.removeAll { $0 == item.Id }
                             }
-                            else{
-                                listofmemberid.remove(at:item.Id)
-                            }
+            
                         }
-                    }
+                            
+                        }
                 }
                 }
                 .listStyle(PlainListStyle())
@@ -82,7 +84,7 @@ struct CommitteeMemberView: View {
     }
 
     func fetchCommitteMember() {
-        print("Id of event is.........: \(Eventid)")
+        
         let api = APIHelper()
         api.getMethodCall(controllerName: "Main", actionName: "GetCommitteeMember") { response in
             DispatchQueue.main.async {

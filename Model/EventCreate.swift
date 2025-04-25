@@ -7,7 +7,7 @@
 
 import Foundation
 struct EventCreate: Codable,Hashable{
-    let Id: Int
+    let Id: Int?
     let Title: String
     let RegStartDate: String
     let RegEndDate: String

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SignUPView: View {
+   
     @State private var email = ""
     @State private var name = ""
     @State private var password = ""
@@ -11,7 +12,7 @@ struct SignUPView: View {
     @State private var nameError = ""
     @State private var emailError = ""
     @State private var passwordError = ""
-    @State public var role=["Admin","Student","Committee"]
+    @State public var role=["Admin","Student"]
     @State public var selectedOption="Select"
     var body: some View {
         ZStack {
@@ -28,7 +29,7 @@ struct SignUPView: View {
                     .bold()
                     .shadow(radius: 5)
                     .padding(.bottom, 20)
-                    .offset(x:10, y: -100)
+                   // .offset(x:10, y: -100)
                     .padding(.horizontal, 50)
                 
                 VStack(spacing: 20) {
@@ -118,7 +119,7 @@ struct SignUPView: View {
                 Button(action: {
                     print("Selected Role: \(selectedOption)")
                     if emailError.isEmpty && passwordError.isEmpty && password == confirmpassword {
-                        let account = CraeteAccount(Id: 1, Password: password, Name: name, Email: email, Role: selectedOption)
+                        let account = CraeteAccount(Id:0, Password: password, Name: name, Email: email, Role: selectedOption)
                         do {
                             let jsonData = try JSONEncoder().encode(account)
                             let jsonString = String(data: jsonData, encoding: .utf8)
@@ -127,16 +128,17 @@ struct SignUPView: View {
 
                                 let api = APIHelper()
                                 
-                                api.postMethodCall(controllerName: "Main", actionName: "AddUser", httpBody: jsonData) { response in
-                                   
-                                        if response.responseCode == 200 {
-                                            print("Signup Successful: \(response.responseMessage)")
-                                            withAnimation{
-                                            navigateToLogin = true
-                                            }
-                                        } else {
-                                            print("Signup Failed: \(response.responseMessage)")
-                                        }
+                            api.postMethodCall(controllerName:"Main", actionName:"AddUser", httpBody: jsonData) { response in
+                                print("Full Response: \(response.responseMessage)") // if this has a .responseBody or rawData, print that too
+                                if response.responseCode == 200 {
+                                    print("Signup Successful: \(response.responseMessage)")
+                                    withAnimation {
+                                        navigateToLogin = true
+                                    }
+                                } else {
+                                    print("Signup Failed: \(response.responseMessage)")
+                                }
+                            
                                     
                                 }
                             } catch {
@@ -182,7 +184,7 @@ struct SignUPView: View {
             .frame(maxHeight: 890, alignment: .center)
             
             // Navigation Link to Login
-            
+            .navigationBarBackButtonHidden(true)
             NavigationLink(destination: LoginView(), isActive: $navigateToLogin) {
                 EmptyView()
             }

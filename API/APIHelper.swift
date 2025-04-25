@@ -30,9 +30,9 @@ class APIMessage {
 }
 
 class APIHelper {
-    private let baseURLString = "http://192.168.1.8/ApiDemo/api/"
+    private let baseURLString = "http://10.211.55.4/ApiTalentHunt/api/"
    // private let baseURLString = "http://172.16.12.54/WebApplicationApp/api/"
-    static let baseImageURLString = "http://192.168.1.8/ApiDemo/Images/"
+    static let baseImageURLString = "http://10.211.55.4/ApiTalentHunt/Images/"
 
     func getMethodCall(controllerName: String, actionName: String, completion: @escaping (APIMessage) -> Void) {
         let apiMessage = APIMessage()

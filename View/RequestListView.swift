@@ -1,91 +1,142 @@
 import SwiftUI
 
+struct RequestToMember: Codable, Hashable {
+    var Id: Int
+    var EventId: Int
+    var Status: String?
+    var Title: String?
+    var Image: String
+     
+   
+}
+
 struct RequestListView: View {
-    let requests = [
-        Request(title: "Design Creation", designer: "Awais Ali", description: "Design creating competition in BiIT"),
-        Request(title: "Design Creation", designer: "Zeeshan Talat", description: "Design creating competition in BiIT"),
-        Request(title: "Design Creation", designer: "Syad Agib", description: "Design creating competition in BiIT"),
-        Request(title: "Design Creation", designer: "Fazyaab Khan", description: "Design creating competition in BiIT")
-    ]
-    
+    @State private var request = [RequestToMember]()
+    @Binding var userId: Int
+
     var body: some View {
-        NavigationView {
-            List {
-                Section(header: Text("Requests").font(.headline)) {
-                    ForEach(requests) { request in
-                        RequestCard(request: request)
+        VStack{
+        Text("Request")
+        List {
+            ForEach(request, id: \.self) { item in
+                HStack {
+                    // Load image from URL if valid
+                    AsyncImage(url: URL(string: "\(APIHelper.baseImageURLString)\(item.Image)")) { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .frame(width: 90, height: 90)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.gray, lineWidth: 0))
+
+                    Divider()
+                    Spacer()
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(item.Status ?? "No status")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+
+                        Divider()
+
+                        Text(item.Title ?? "No title")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+
+                      
+
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                // Reject action here
+                            }) {
+                                Text("Reject")
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 8)
+                                    .background(Color.gray.opacity(0.7))
+                                    .cornerRadius(8)
+                            }
+
+                            Button(action: {
+                                // Accept action here
+                            }) {
+                                Text("Accept")
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 8)
+                                    .background(Color.blue)
+                                    .cornerRadius(8)
+                            }
+                        }
+                    }
+                }
+                .padding()
+                .background(Color(.systemBackground))
+                .cornerRadius(10)
+                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+                .padding(.vertical, 4)
+            }
+        }
+        .onAppear {
+              fetchAssignedMember(userId: userId)
+        }
+    }
+    }
+    func fetchAssignedMember(userId: Int) {
+        do {
+            let requestData = ["UserId": userId]
+            let jsonData = try JSONEncoder().encode(requestData)
+            let api = APIHelper()
+            api.postMethodCall(controllerName: "Main",
+                               actionName: "NotificationToAssignMember", // <-- Update if needed
+                               httpBody: jsonData) { response in
+                if let responseData = response.responseData {
+                    DispatchQueue.main.async {
+                        do {
+                            let decoded = try JSONDecoder().decode([RequestToMember].self, from: responseData)
+                            request = decoded
+                            print("Decoded requests: \(request)")
+                        } catch {
+                            print("Failed to decode response data: \(error)")
+                        }
                     }
                 }
             }
-            .navigationTitle("9:41")
-            .navigationBarTitleDisplayMode(.inline)
+        } catch {
+            print("Error encoding request: \(error)")
         }
     }
-}
-
-struct Request: Identifiable {
-    let id = UUID()
-    let title: String
-    let designer: String
-    let description: String
-}
-
-struct RequestCard: View {
-    let request: Request
     
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(request.title)
-                .font(.headline)
-                .foregroundColor(.primary)
-            
-            Divider()
-            
-            Text(request.designer)
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-            
-            Text(request.description)
-                .font(.body)
-                .foregroundColor(.primary)
-                .padding(.bottom, 8)
-            
-            HStack {
-                Spacer()
-                
-                Button(action: {
-                    // Reject action
-                }) {
-                    Text("Reject")
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 8)
-                        .background(Color.red)
-                        .cornerRadius(8)
-                }
-                
-                Button(action: {
-                    // Accept action
-                }) {
-                    Text("Accept")
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 8)
-                        .background(Color.green)
-                        .cornerRadius(8)
+    
+    
+    
+    
+    func ChangeStatus(Id: Int) {
+        do {
+            let requestData = ["AssignId": userId]
+            let jsonData = try JSONEncoder().encode(requestData)
+            let api = APIHelper()
+            api.postMethodCall(controllerName: "Main",
+                               actionName: "DeleteEvent", // <-- Update if needed
+                               httpBody: jsonData) { response in
+                if let responseData = response.responseData {
+                    DispatchQueue.main.async {
+                        do {
+                            let decoded = try JSONDecoder().decode([RequestToMember].self, from: responseData)
+                            request = decoded
+                            print("Decoded requests: \(request)")
+                        } catch {
+                            print("Failed to decode response data: \(error)")
+                        }
+                    }
                 }
             }
+        } catch {
+            print("Error encoding request: \(error)")
         }
-        .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(10)
-        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
-        .padding(.vertical, 4)
     }
-}
+    }
 
-struct RequestListView_Previews: PreviewProvider {
-    static var previews: some View {
-        RequestListView()
-    }
-}

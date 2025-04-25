@@ -1,48 +1,34 @@
 //
-//  EventCreateView.swift
+//  EventDetailView.swift
 //  Talent-Hunt
 //
-//  Created by MacBook Pro on 11/03/2025.
+//  Created by MacBook Pro on 15/04/2025.
 //
 
 import SwiftUI
+ 
+struct EventDetailView: View {
+    @Binding   var title:String
+    @Binding   var description:String
+    @Binding   var Imageurl:String
+    @State     var navigateToAssignMamber=false
+    @State     var showEventDatePicker = false
+    @State     var contactImage: UIImage? = nil
+    @State     var isImagePickerPresented: Bool = false
+    @State     var showRegStartDatePicker = false
+    @Binding   var regStartDate:Date
+    @State     var showEventDate = false
+    @Binding   var EventDate : Date
+    @State     var showRegEndDatePicker = false
+    @Binding   var regEndDate : Date
+    @State     var showEventStartTimePicker = false
+    @Binding   var EventStartTime : Date
+    @State     var showEventEndTimePicker = false
+    @Binding   var EventEndTime : Date
+    @State     var showSuccessAlert = false
+    @State     var NavigateToAssignMamber = false
 
-struct EventCreateView: View {
-    @State private var title = ""
-    @State private var description = ""
-    @State private var navigateToAssignMamber=false
-//    @State private var sem1 = false
-//    @State private var sem2 = false
-//    @State private var sem3 = false
-//    @State private var sem4 = false
-//    @State private var sem5 = false
-//    @State private var sem6 = false
-    @State private var semester1 = "1st"
-    @State private var semester2 = "2nd"
-    @State private var semester3 = "3rd"
-    @State private var semester4 = "4th"
-    @State private var semester5 = "5th"
-    @State private var semester6 = "6th"
-    @State private var showEventDatePicker = false
-    @State private var selectedEventDate = Date()
-    @State private var contactImage: UIImage? = nil
-    @State private var isImagePickerPresented: Bool = false
-    @State private var listofrules = [String]()
-    // Registration Dates
-    @State private var showRegStartDatePicker = false
-    @State private var regStartDate = Date()
-    @State private var showEventDate = false
-    @State private var EventDate = Date()
-    @State private var showRegEndDatePicker = false
-    @State private var regEndDate = Date()
-    
-    // Event Time
-    @State private var showEventStartTimePicker = false
-    @State private var EventStartTime = Date()
-    @State private var showEventEndTimePicker = false
-    @State private var EventEndTime = Date()
-    
-    @State private var showSuccessAlert = false
+    @Binding   var Id:Int
     
     var body: some View {
         ZStack {
@@ -73,32 +59,11 @@ struct EventCreateView: View {
                             .shadow(color:.black.opacity(0.3), radius: 3, x: 1, y: 1)
                     }
                   
-                    //  .background(Color.white.opacity(4.0))
+                 
                   
                     .padding(.horizontal)
 
-                    // Description Input Field
-                 
-
-                    // Rules Checkboxes
-//                    VStack(alignment: .leading, spacing: 10) {
-//                        Text("Rules")
-//                            .font(.headline)
-//                            .foregroundColor(.black)
-//                        HStack {
-//                            CheckboxView(SelectedText: $sem1, text: semester1)
-//                            CheckboxView(SelectedText: $sem2, text: semester2)
-//                            CheckboxView(SelectedText: $sem3, text: semester3)
-//                            CheckboxView(SelectedText: $sem4, text: semester4)
-//                            CheckboxView(SelectedText: $sem5, text: semester5)
-//                            CheckboxView(SelectedText: $sem6, text: semester6)
-//                        }
-//
-//                    }
-//                    .padding()
-//                    .background(Color.white.opacity(0.6))
-//                    .cornerRadius(12)
-//                    .padding(.horizontal)
+             
 //
                     VStack {
                         DatePickerView(title: "Event Date", date: $EventDate, showDatePicker: $showEventDate)
@@ -145,11 +110,49 @@ struct EventCreateView: View {
                     }
                     .padding(.horizontal)
                     VStack {
+                        if((contactImage) == nil){
+                        if let imageUrl = Imageurl,
+                           let url = URL(string: "\(APIHelper.baseImageURLString)\(imageUrl.replacingOccurrences(of: " ", with: "%20"))") {
+                            AsyncImage(url: url) { phase in
+                                switch phase {
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(height: 150)
+                                        .clipped()
+                                        .cornerRadius(10)
+                                        .padding()
+                                case .failure(_):
+                                  
+                                    Image(systemName: "photo")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 150)
+                                        .foregroundColor(.gray)
+                                case .empty:
+                                    ProgressView()
+                                        .frame(height: 150)
+                                @unknown default:
+                                    EmptyView()
+                                }
+                            }
+                        }
+                        
+                            
+                             
+                                // use image
+                            
+                      
+                        }
+                    VStack{
                         if let image = contactImage {
+                            
                             Image(uiImage: image)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 200)
+                            
                         } else {
                             Text("No Image Selected")
                                 .foregroundColor(.black)
@@ -166,6 +169,7 @@ struct EventCreateView: View {
 //                            .foregroundColor(.white)
 //                            .cornerRadius(12)
                         }
+                    }
                     }.sheet(isPresented: $isImagePickerPresented) {
                         CustomImagePicker(contactImage: $contactImage)
                            }
@@ -174,10 +178,10 @@ struct EventCreateView: View {
                     // Submit Button
                     Button(action: {
                        // AddInListRules()
-                        createEvent()
-                   
+                        UpdateEvent()
+                        showSuccessAlert.toggle()
                     }) {
-                        Text("Create Event")
+                        Text("Update Event")
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -191,14 +195,29 @@ struct EventCreateView: View {
                     .alert(isPresented: $showSuccessAlert) {
                         Alert(
                             title: Text("Success"),
-                            message: Text("Your event has been created successfully!"),
+                            message: Text("Your Event has been Updated Successfully!"),
                             dismissButton: .default(Text("OK"))
                         )
                     }
                     .padding(.horizontal)
+                    Button(action: {
+                        navigateToAssignMamber.toggle()
+                    }) {
+                        Text("Assign Member")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(.blue)
+                            .cornerRadius(12)
+                            .shadow(radius: 5)
+                    }
+                    .padding(.horizontal)
                     
-                   
-                }
+                    NavigationLink(destination: CommitteeMemberView(Eventid: $Id), isActive: $navigateToAssignMamber) {
+                        EmptyView()
+                    }                }
                 Spacer()
             }
 //            NavigationLink(destination: CommitteeMemberView(), isActive: $navigateToAssignMamber) {
@@ -211,12 +230,12 @@ struct EventCreateView: View {
         }
     }
 
-    private func createEvent() {
+    private func UpdateEvent() {
         
         let timeFormatter = DateFormatter()
            timeFormatter.dateFormat = "HH:mm:ss"
         let event = EventCreate(
-            Id:nil,
+            Id: Id,
             Title: title,
             RegStartDate: dateFormatter.string(from: regStartDate),
             RegEndDate: dateFormatter.string(from: regEndDate),
@@ -246,41 +265,23 @@ struct EventCreateView: View {
                 images.append(mediaImage!)
                 
                 // Upload images and handle the response
-                api.uploadImages(images: images, parameters: params, endPoint: "Main/CreateEvent") { response in
+                api.uploadImages(images: images, parameters: params, endPoint: "Main/UpdateEvent") { response in
                     // Handle the response inside the closure
-                   // if let responseData = response.responseData {
-                //                        do {
-                //
-                //                            let events = try JSONDecoder().decode(EventCreate.self, from: responseData)
-                //                            print("Decoded events: \(events)")
-                //
-                //                          //  AddRules(eventid: events.Id!, list: listofrules)
-                //
-                //
-                //                            // Perform any additional actions with the decoded data
-                //                            // For example, update the UI or save the data
-                //                        } catch {
-                //                            print("Failed to decode response data: \(error)")
-                //                        }
-                //                    }
-                    print("Response Message: \(response.responseMessage)")
+                    let responseMessage = response.responseMessage
+                    print("Response Message: \(responseMessage)")
                     
                     // Decode the response data if needed
-//                    if let responseData = response.responseData {
-//                        do {
-//
-//                            let events = try JSONDecoder().decode(EventCreate.self, from: responseData)
-//                            print("Decoded events: \(events)")
-//
-//                          //  AddRules(eventid: events.Id!, list: listofrules)
-//
-//
-//                            // Perform any additional actions with the decoded data
-//                            // For example, update the UI or save the data
-//                        } catch {
-//                            print("Failed to decode response data: \(error)")
-//                        }
-//                    }
+                    if let responseData = response.responseData {
+                        do {
+                            
+                            let events = try JSONDecoder().decode(EventCreate.self, from: responseData)
+                            print("Decoded events: \(events)")
+                           
+                          
+                        } catch {
+                            print("Failed to decode response data: \(error)")
+                        }
+                    }
                     
                     // Show success alert
                     DispatchQueue.main.async {
@@ -292,60 +293,23 @@ struct EventCreateView: View {
             print("Error encoding event: \(error)")
         }
     }
-//    private func AddInListRules() {
-//        if(sem1){
-//            listofrules.append(semester1)
-//        }
-//        if(sem2){
-//            listofrules.append(semester2)
-//        }
-//        if(sem3){
-//            listofrules.append(semester3)
-//        }
-//        if(sem4){
-//            listofrules.append(semester4)
-//        }
-//        if(sem5){
-//            listofrules.append(semester5)
-//        }
-//        if(sem6){
-//            listofrules.append(semester6)
-//        }
-//      }
-//    private func AddRules(eventid:Int,list:[String]) {
-//        let rulesobject=Rules(Id: 0, Eventid: eventid, Rules: list)
-//        do {
-//            let jsonData = try JSONEncoder().encode(rulesobject)
-//            let jsonString = String(data: jsonData, encoding: .utf8)
-//            print("JSON Sent to API: \(jsonString!)")  // Debugging log
 //
-//
-//                let api = APIHelper()
-//
-//                api.postMethodCall(controllerName: "Main", actionName: "AddRules", httpBody: jsonData) { response in
-//
-//                        if response.responseCode == 200 {
-//                            print("Add Successful: \(response.responseMessage)")
-//
-//                        } else {
-//                            print("Failed: \(response.responseMessage)")
-//                        }
-//
-//                }
-//            } catch {
-//                print("Error encoding  Rules: \(error.localizedDescription)")
-//            }
-//    }
+    
+       
     private var dateFormatter: DateFormatter {
           let formatter = DateFormatter()
           formatter.dateStyle = .medium
           return formatter
       }
+    
+    
+   
+
 }
-struct EventCreateView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventCreateView()
-       
- 
-    }
-}
+  
+
+//struct EventDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EventDetailView()
+//    }
+//}

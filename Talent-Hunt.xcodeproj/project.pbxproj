@@ -13,6 +13,10 @@
 		52562EF92DAAE9550026CBF3 /* RequestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52562EF82DAAE9550026CBF3 /* RequestListView.swift */; };
 		52562EFB2DAAEA4C0026CBF3 /* ResultSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52562EFA2DAAEA4C0026CBF3 /* ResultSheetView.swift */; };
 		52562EFD2DABF5690026CBF3 /* DrawerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52562EFC2DABF5690026CBF3 /* DrawerMenuView.swift */; };
+		52562EFF2DAE8DF30026CBF3 /* AddCommitteeMemeberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52562EFE2DAE8DF30026CBF3 /* AddCommitteeMemeberView.swift */; };
+		52562F012DAEE3DD0026CBF3 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52562F002DAEE3DD0026CBF3 /* EventDetailView.swift */; };
+		52562F032DB7C7D70026CBF3 /* Addcommittee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52562F022DB7C7D70026CBF3 /* Addcommittee.swift */; };
+		52562F052DB994FB0026CBF3 /* textView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52562F042DB994FA0026CBF3 /* textView.swift */; };
 		5263C6092D8092EF00150615 /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C6082D8092EF00150615 /* CustomImagePicker.swift */; };
 		5263C60B2D80948B00150615 /* EventCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C60A2D80948B00150615 /* EventCreateView.swift */; };
 		5263C60D2D8096CA00150615 /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263C60C2D8096CA00150615 /* CheckboxView.swift */; };
@@ -39,6 +43,10 @@
 		52562EF82DAAE9550026CBF3 /* RequestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListView.swift; sourceTree = "<group>"; };
 		52562EFA2DAAEA4C0026CBF3 /* ResultSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSheetView.swift; sourceTree = "<group>"; };
 		52562EFC2DABF5690026CBF3 /* DrawerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMenuView.swift; sourceTree = "<group>"; };
+		52562EFE2DAE8DF30026CBF3 /* AddCommitteeMemeberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommitteeMemeberView.swift; sourceTree = "<group>"; };
+		52562F002DAEE3DD0026CBF3 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
+		52562F022DB7C7D70026CBF3 /* Addcommittee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Addcommittee.swift; sourceTree = "<group>"; };
+		52562F042DB994FA0026CBF3 /* textView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textView.swift; sourceTree = "<group>"; };
 		5263C6082D8092EF00150615 /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
 		5263C60A2D80948B00150615 /* EventCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreateView.swift; sourceTree = "<group>"; };
 		5263C60C2D8096CA00150615 /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
@@ -78,6 +86,7 @@
 				5263C6142D83858100150615 /* EventCreate.swift */,
 				5263C61C2D89915900150615 /* Rules.swift */,
 				5263C6212D8F464C00150615 /* AssignedMember.swift */,
+				52562F022DB7C7D70026CBF3 /* Addcommittee.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,6 +153,9 @@
 				52562EF82DAAE9550026CBF3 /* RequestListView.swift */,
 				52562EFA2DAAEA4C0026CBF3 /* ResultSheetView.swift */,
 				52562EFC2DABF5690026CBF3 /* DrawerMenuView.swift */,
+				52562EFE2DAE8DF30026CBF3 /* AddCommitteeMemeberView.swift */,
+				52562F002DAEE3DD0026CBF3 /* EventDetailView.swift */,
+				52562F042DB994FA0026CBF3 /* textView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -220,6 +232,7 @@
 			files = (
 				526544382D7EDCE6009FC9C0 /* APIHelper.swift in Sources */,
 				52562EF62DAA98A80026CBF3 /* TabitemView.swift in Sources */,
+				52562EFF2DAE8DF30026CBF3 /* AddCommitteeMemeberView.swift in Sources */,
 				52395F8E2D7DE06900F2072C /* AccountView.swift in Sources */,
 				52F0E5DE2D58D6D100D7E92B /* SignUPView.swift in Sources */,
 				5263C61B2D87816400150615 /* TimePickerView.swift in Sources */,
@@ -231,12 +244,15 @@
 				5263C6112D8195AB00150615 /* DatePickerView.swift in Sources */,
 				52562EFB2DAAEA4C0026CBF3 /* ResultSheetView.swift in Sources */,
 				5263C6152D83858100150615 /* EventCreate.swift in Sources */,
+				52562F052DB994FB0026CBF3 /* textView.swift in Sources */,
 				526544352D7EDAF0009FC9C0 /* CreateAccount.swift in Sources */,
 				52395F902D7DF00F00F2072C /* LoginView.swift in Sources */,
 				52F0E5CB2D58D5C100D7E92B /* Talent_HuntApp.swift in Sources */,
 				5265443C2D7F6E0F009FC9C0 /* AdminDashboardView.swift in Sources */,
+				52562F012DAEE3DD0026CBF3 /* EventDetailView.swift in Sources */,
 				5263C6092D8092EF00150615 /* CustomImagePicker.swift in Sources */,
 				52562EFD2DABF5690026CBF3 /* DrawerMenuView.swift in Sources */,
+				52562F032DB7C7D70026CBF3 /* Addcommittee.swift in Sources */,
 				5263C61F2D8F2E0500150615 /* CommitteeMemberView.swift in Sources */,
 				5263C61D2D89915900150615 /* Rules.swift in Sources */,
 			);

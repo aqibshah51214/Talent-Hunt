@@ -8,7 +8,7 @@
 import Foundation
 
 struct CraeteAccount: Codable {
-    let Id: Int
+    let Id: Int?
     let Password: String
     let Name: String
     let Email: String
