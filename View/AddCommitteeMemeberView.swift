@@ -14,7 +14,7 @@ struct AddCommitteeMemeberView: View {
      @State private var password = ""
      @State private var confirmpassword = ""
      @State private var navigateToLogin = false
-     
+     @State private var showSuccessAlert = false
      @State private var contactImage: UIImage? = nil
      @State private var isImagePickerPresented: Bool = false
      @State private var nameError = ""
@@ -26,23 +26,16 @@ struct AddCommitteeMemeberView: View {
      @State public var SelectedRoleOption="Committee"
      var body: some View {
          ZStack {
- //            LinearGradient(gradient: Gradient(colors: [Color.white.opacity(0.1), Color.white.opacity(0.1)]),
- //                           startPoint: .topLeading,
- //                           endPoint: .bottomTrailing)
- //                .ignoresSafeArea()
+ //
              
          
              VStack {
                  Text("Add Committee")
-                    // .font(.system(size: 35))
-                     //.foregroundColor(.black)
                      .bold()
                      .shadow(radius: 5)
-                    // .padding(.bottom, 20)
-                    // .offset(x:10, y: -100)
                      .padding()
                  
-                 VStack(spacing: 20) {
+                 VStack(spacing: 10) {
                      HStack {
                          Image(systemName: "person")
                              .foregroundColor(.black)
@@ -161,18 +154,25 @@ struct AddCommitteeMemeberView: View {
                          AddMember()
                  }) {
                      Text("Add")
-                         .font(.headline)
+                         .font(.title2)
+                         .bold()
                          .foregroundColor(.white)
                          .frame(maxWidth: .infinity)
-                         .padding()
+                         .padding(.vertical,10)
                          .background(Color.blue)
                          .cornerRadius(12)
                          .shadow(radius: 5)
                  }
-                 .padding(.horizontal, 25)
+                 .padding(.horizontal, 105)
                  .padding(.top, 20)
                  .disabled(!emailError.isEmpty || !passwordError.isEmpty || password != confirmpassword)
-                 
+                 .alert(isPresented: $showSuccessAlert) {
+                     Alert(
+                         title: Text("Success"),
+                         message: Text(" Committee Added Successfully!"),
+                         dismissButton: .default(Text("OK").foregroundColor(.blue))
+                     )
+                 }
                  // Already Have an Account?
                 
                 // Spacer()
@@ -230,6 +230,9 @@ struct AddCommitteeMemeberView: View {
                 api.uploadImages(images: images, parameters: params, endPoint: "Main/AddCommitteeMember") { response in
                     // Handle the response inside the closure
                     let responseMessage = response.responseMessage
+                    if(response.responseCode==200){
+                        showSuccessAlert=true
+                    }
                     print("Response Message: \(responseMessage)")
                     
                     // Decode the response data if needed

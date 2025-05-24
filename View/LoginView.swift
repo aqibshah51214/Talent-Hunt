@@ -5,11 +5,12 @@ struct LoginView: View {
     @State private var password: String = ""
     @State private var navigateToAdmin = false
     @State private var navigateToCommittee = false
+    @State private var navigateToStudent = false
     @State private var signuplist = [CraeteAccount]()
-    @State private var id: Int = 0
+    @State private var Userid: Int = 0
 
     var body: some View {
-        NavigationView {
+       // NavigationView {
             VStack(spacing: 25) {
                 Text("Welcome Back!")
                     .font(.largeTitle)
@@ -56,12 +57,15 @@ struct LoginView: View {
                 Button(action: {
                     let value = getdata(email: email, password: password)
                     if let user = value.first {
-                        id = user.Id ?? 0
+                        Userid = user.Id ?? 0
                         if user.Role == "Committee" {
                             navigateToCommittee = true
-                        } else {
+                        } else if(user.Role=="Admin") {
                             navigateToAdmin = true
+                        }else{
+                            navigateToStudent = true
                         }
+                        
                     }
                 }) {
                     Text("Login")
@@ -88,14 +92,18 @@ struct LoginView: View {
                 NavigationLink(destination: AdminDashboardView(), isActive: $navigateToAdmin) {
                     EmptyView()
                 }
-                NavigationLink(destination: RequestListView(userId: $id), isActive: $navigateToCommittee) {
+                NavigationLink(destination: CommitteeDashboardView(userid:$Userid), isActive: $navigateToCommittee) {
+                    EmptyView()
+                }
+                NavigationLink(destination: StudentDashboardView(userid:$Userid), isActive: $navigateToStudent) {
                     EmptyView()
                 }
             }
             .onAppear {
                 fetchUsers()
             }
-        }
+            //.navigationBarBackButtonHidden(true)
+       // }
     }
 
     // Fetch users from API

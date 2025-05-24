@@ -85,22 +85,27 @@ struct CommitteeMemberView: View {
 
     func fetchCommitteMember() {
         
-        let api = APIHelper()
-        api.getMethodCall(controllerName: "Main", actionName: "GetCommitteeMember") { response in
-            DispatchQueue.main.async {
-                if response.responseCode == 200, let data = response.responseData {
-                    do {
-                        print("API Response Data: \(String(data: data, encoding: .utf8) ?? "No Data")")
-                        let decodedCommittee = try JSONDecoder().decode([Committee].self, from: data)
-                        listdata = decodedCommittee
-                        print("Committee Members Loaded: \(listdata.count) members")
-                    } catch {
-                        print("Decoding Error: \(error.localizedDescription)")
+        do {
+            let requestData = ["Eventid": Eventid]
+            let jsonData = try JSONEncoder().encode(requestData)
+            let api = APIHelper()
+            api.postMethodCall(controllerName: "Main",
+                               actionName: "GetCommitteeMember", // <-- Update if needed
+                               httpBody: jsonData) { response in
+                if let responseData = response.responseData {
+                    DispatchQueue.main.async {
+                        do {
+                            let decoded = try JSONDecoder().decode([Committee].self, from: responseData)
+                            listdata = decoded
+                            print("Decoded requests: \(listdata)")
+                        } catch {
+                            print("Failed to decode response data: \(error)")
+                        }
                     }
-                } else {
-                    print("Failed to fetch committee members, Response Code: \(response.responseCode)")
                 }
             }
+        } catch {
+            print("Error encoding request: \(error)")
         }
     }
 

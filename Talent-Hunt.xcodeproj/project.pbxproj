@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5223DCA72DDBE9A400850080 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5223DCA62DDBE9A400850080 /* Task.swift */; };
+		5223DCA92DDC984900850080 /* StudentTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5223DCA82DDC984900850080 /* StudentTaskView.swift */; };
+		5223DCAB2DE20C2B00850080 /* UploadTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5223DCAA2DE20C2B00850080 /* UploadTaskView.swift */; };
 		52395F8E2D7DE06900F2072C /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52395F8D2D7DE06900F2072C /* AccountView.swift */; };
 		52395F902D7DF00F00F2072C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52395F8F2D7DF00F00F2072C /* LoginView.swift */; };
 		52562EF62DAA98A80026CBF3 /* TabitemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52562EF52DAA98A80026CBF3 /* TabitemView.swift */; };
@@ -30,13 +33,23 @@
 		526544382D7EDCE6009FC9C0 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526544372D7EDCE5009FC9C0 /* APIHelper.swift */; };
 		5265443A2D7EF666009FC9C0 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526544392D7EF666009FC9C0 /* DropDownView.swift */; };
 		5265443C2D7F6E0F009FC9C0 /* AdminDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265443B2D7F6E0F009FC9C0 /* AdminDashboardView.swift */; };
+		527A3C372DC78DEC0012EB50 /* CommitteeDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A3C362DC78DEC0012EB50 /* CommitteeDashboardView.swift */; };
+		527AEBB02DBC06C900706711 /* TaskCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527AEBAF2DBC06C900706711 /* TaskCreateView.swift */; };
+		52BFF7C22DE21DC8004782AE /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = 52BFF7C12DE21DC8004782AE /* Preview Content */; };
+		52CE39BA2DCE55160045FB95 /* StudentDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE39B92DCE55160045FB95 /* StudentDashboardView.swift */; };
+		52CE39BE2DCFFA760045FB95 /* CountryCodePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE39BD2DCFFA760045FB95 /* CountryCodePicker.swift */; };
+		52CE39C02DD360130045FB95 /* StudentEventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE39BF2DD360120045FB95 /* StudentEventDetailView.swift */; };
+		52CE39C62DD906A20045FB95 /* ApplyStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE39C52DD906A20045FB95 /* ApplyStudent.swift */; };
+		52CE39CA2DD9131E0045FB95 /* StudentRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE39C92DD9131E0045FB95 /* StudentRequestView.swift */; };
 		52F0E5CB2D58D5C100D7E92B /* Talent_HuntApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0E5CA2D58D5C100D7E92B /* Talent_HuntApp.swift */; };
 		52F0E5CF2D58D5C200D7E92B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52F0E5CE2D58D5C200D7E92B /* Assets.xcassets */; };
-		52F0E5D22D58D5C200D7E92B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52F0E5D12D58D5C200D7E92B /* Preview Assets.xcassets */; };
 		52F0E5DE2D58D6D100D7E92B /* SignUPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0E5DD2D58D6D100D7E92B /* SignUPView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5223DCA62DDBE9A400850080 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		5223DCA82DDC984900850080 /* StudentTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTaskView.swift; sourceTree = "<group>"; };
+		5223DCAA2DE20C2B00850080 /* UploadTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTaskView.swift; sourceTree = "<group>"; };
 		52395F8D2D7DE06900F2072C /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		52395F8F2D7DF00F00F2072C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		52562EF52DAA98A80026CBF3 /* TabitemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabitemView.swift; sourceTree = "<group>"; };
@@ -60,10 +73,17 @@
 		526544372D7EDCE5009FC9C0 /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		526544392D7EF666009FC9C0 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		5265443B2D7F6E0F009FC9C0 /* AdminDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDashboardView.swift; sourceTree = "<group>"; };
+		527A3C362DC78DEC0012EB50 /* CommitteeDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitteeDashboardView.swift; sourceTree = "<group>"; };
+		527AEBAF2DBC06C900706711 /* TaskCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCreateView.swift; sourceTree = "<group>"; };
+		52BFF7C12DE21DC8004782AE /* Preview Content */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Preview Content"; path = "../../../Preview Content"; sourceTree = "<group>"; };
+		52CE39B92DCE55160045FB95 /* StudentDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDashboardView.swift; sourceTree = "<group>"; };
+		52CE39BD2DCFFA760045FB95 /* CountryCodePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodePicker.swift; sourceTree = "<group>"; };
+		52CE39BF2DD360120045FB95 /* StudentEventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentEventDetailView.swift; sourceTree = "<group>"; };
+		52CE39C52DD906A20045FB95 /* ApplyStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyStudent.swift; sourceTree = "<group>"; };
+		52CE39C92DD9131E0045FB95 /* StudentRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRequestView.swift; sourceTree = "<group>"; };
 		52F0E5C72D58D5C100D7E92B /* Talent-Hunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Talent-Hunt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F0E5CA2D58D5C100D7E92B /* Talent_HuntApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Talent_HuntApp.swift; sourceTree = "<group>"; };
 		52F0E5CE2D58D5C200D7E92B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		52F0E5D12D58D5C200D7E92B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		52F0E5DD2D58D6D100D7E92B /* SignUPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUPView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +107,8 @@
 				5263C61C2D89915900150615 /* Rules.swift */,
 				5263C6212D8F464C00150615 /* AssignedMember.swift */,
 				52562F022DB7C7D70026CBF3 /* Addcommittee.swift */,
+				52CE39C52DD906A20045FB95 /* ApplyStudent.swift */,
+				5223DCA62DDBE9A400850080 /* Task.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -105,7 +127,6 @@
 				526544362D7EDCBE009FC9C0 /* API */,
 				526544332D7EDAB3009FC9C0 /* Model */,
 				52F0E5DC2D58D6AA00D7E92B /* View */,
-				52F0E5C92D58D5C100D7E92B /* Talent-Hunt */,
 				52F0E5C82D58D5C100D7E92B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -123,17 +144,9 @@
 			children = (
 				52F0E5CA2D58D5C100D7E92B /* Talent_HuntApp.swift */,
 				52F0E5CE2D58D5C200D7E92B /* Assets.xcassets */,
-				52F0E5D02D58D5C200D7E92B /* Preview Content */,
+				52BFF7C12DE21DC8004782AE /* Preview Content */,
 			);
 			path = "Talent-Hunt";
-			sourceTree = "<group>";
-		};
-		52F0E5D02D58D5C200D7E92B /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				52F0E5D12D58D5C200D7E92B /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		52F0E5DC2D58D6AA00D7E92B /* View */ = {
@@ -145,10 +158,10 @@
 				526544392D7EF666009FC9C0 /* DropDownView.swift */,
 				5265443B2D7F6E0F009FC9C0 /* AdminDashboardView.swift */,
 				5263C60A2D80948B00150615 /* EventCreateView.swift */,
+				5263C61E2D8F2E0500150615 /* CommitteeMemberView.swift */,
 				5263C60C2D8096CA00150615 /* CheckboxView.swift */,
 				5263C6102D8195AB00150615 /* DatePickerView.swift */,
 				5263C61A2D87816400150615 /* TimePickerView.swift */,
-				5263C61E2D8F2E0500150615 /* CommitteeMemberView.swift */,
 				52562EF52DAA98A80026CBF3 /* TabitemView.swift */,
 				52562EF82DAAE9550026CBF3 /* RequestListView.swift */,
 				52562EFA2DAAEA4C0026CBF3 /* ResultSheetView.swift */,
@@ -156,6 +169,15 @@
 				52562EFE2DAE8DF30026CBF3 /* AddCommitteeMemeberView.swift */,
 				52562F002DAEE3DD0026CBF3 /* EventDetailView.swift */,
 				52562F042DB994FA0026CBF3 /* textView.swift */,
+				527AEBAF2DBC06C900706711 /* TaskCreateView.swift */,
+				527A3C362DC78DEC0012EB50 /* CommitteeDashboardView.swift */,
+				52CE39B92DCE55160045FB95 /* StudentDashboardView.swift */,
+				52CE39BD2DCFFA760045FB95 /* CountryCodePicker.swift */,
+				52CE39BF2DD360120045FB95 /* StudentEventDetailView.swift */,
+				52CE39C92DD9131E0045FB95 /* StudentRequestView.swift */,
+				5223DCA82DDC984900850080 /* StudentTaskView.swift */,
+				5223DCAA2DE20C2B00850080 /* UploadTaskView.swift */,
+				52F0E5C92D58D5C100D7E92B /* Talent-Hunt */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -204,6 +226,9 @@
 				Base,
 			);
 			mainGroup = 52F0E5BE2D58D5C100D7E92B;
+			packageReferences = (
+				52CE39C42DD62DB40045FB95 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 52F0E5C82D58D5C100D7E92B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -218,7 +243,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52F0E5D22D58D5C200D7E92B /* Preview Assets.xcassets in Resources */,
+				52BFF7C22DE21DC8004782AE /* Preview Content in Resources */,
 				52F0E5CF2D58D5C200D7E92B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,28 +257,38 @@
 			files = (
 				526544382D7EDCE6009FC9C0 /* APIHelper.swift in Sources */,
 				52562EF62DAA98A80026CBF3 /* TabitemView.swift in Sources */,
+				5223DCAB2DE20C2B00850080 /* UploadTaskView.swift in Sources */,
 				52562EFF2DAE8DF30026CBF3 /* AddCommitteeMemeberView.swift in Sources */,
+				5223DCA92DDC984900850080 /* StudentTaskView.swift in Sources */,
 				52395F8E2D7DE06900F2072C /* AccountView.swift in Sources */,
 				52F0E5DE2D58D6D100D7E92B /* SignUPView.swift in Sources */,
 				5263C61B2D87816400150615 /* TimePickerView.swift in Sources */,
+				52CE39C02DD360130045FB95 /* StudentEventDetailView.swift in Sources */,
+				52CE39CA2DD9131E0045FB95 /* StudentRequestView.swift in Sources */,
 				5263C60D2D8096CA00150615 /* CheckboxView.swift in Sources */,
+				52CE39BA2DCE55160045FB95 /* StudentDashboardView.swift in Sources */,
+				527A3C372DC78DEC0012EB50 /* CommitteeDashboardView.swift in Sources */,
 				52562EF92DAAE9550026CBF3 /* RequestListView.swift in Sources */,
 				5263C60B2D80948B00150615 /* EventCreateView.swift in Sources */,
 				5263C6222D8F464C00150615 /* AssignedMember.swift in Sources */,
 				5265443A2D7EF666009FC9C0 /* DropDownView.swift in Sources */,
 				5263C6112D8195AB00150615 /* DatePickerView.swift in Sources */,
 				52562EFB2DAAEA4C0026CBF3 /* ResultSheetView.swift in Sources */,
+				52CE39BE2DCFFA760045FB95 /* CountryCodePicker.swift in Sources */,
 				5263C6152D83858100150615 /* EventCreate.swift in Sources */,
 				52562F052DB994FB0026CBF3 /* textView.swift in Sources */,
 				526544352D7EDAF0009FC9C0 /* CreateAccount.swift in Sources */,
 				52395F902D7DF00F00F2072C /* LoginView.swift in Sources */,
+				527AEBB02DBC06C900706711 /* TaskCreateView.swift in Sources */,
 				52F0E5CB2D58D5C100D7E92B /* Talent_HuntApp.swift in Sources */,
 				5265443C2D7F6E0F009FC9C0 /* AdminDashboardView.swift in Sources */,
 				52562F012DAEE3DD0026CBF3 /* EventDetailView.swift in Sources */,
 				5263C6092D8092EF00150615 /* CustomImagePicker.swift in Sources */,
+				52CE39C62DD906A20045FB95 /* ApplyStudent.swift in Sources */,
 				52562EFD2DABF5690026CBF3 /* DrawerMenuView.swift in Sources */,
 				52562F032DB7C7D70026CBF3 /* Addcommittee.swift in Sources */,
 				5263C61F2D8F2E0500150615 /* CommitteeMemberView.swift in Sources */,
+				5223DCA72DDBE9A400850080 /* Task.swift in Sources */,
 				5263C61D2D89915900150615 /* Rules.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,6 +490,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		52CE39C42DD62DB40045FB95 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 52F0E5BF2D58D5C100D7E92B /* Project object */;
 }

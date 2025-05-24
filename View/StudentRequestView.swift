@@ -1,6 +1,10 @@
-import SwiftUI
-
-struct RequestToMember: Codable, Hashable {
+//
+//  StudentRequestView.swift
+//  Talent-Hunt
+//
+//  Created by MacBook Pro on 17/05/2025.
+//
+struct RequestOfStudent: Codable, Hashable {
     var Id: Int
     var EventId: Int
     var Status: String?
@@ -9,17 +13,16 @@ struct RequestToMember: Codable, Hashable {
      
    
 }
-struct RequestUpdate: Codable, Hashable {
+struct StatusUpdate: Codable, Hashable {
     var Id: Int
     var Status: String
 }
-
-struct RequestListView: View {
-    @State private var request = [RequestToMember]()
-    @Binding var userId: Int
+ 
+import SwiftUI
+struct StudentRequestView: View {
+    @State private var request = [RequestOfStudent]()
+    @Binding var Eventid: Int
     @State private var Status=""
-   
-
     var body: some View {
         VStack{
         
@@ -58,8 +61,8 @@ struct RequestListView: View {
                             Button(action: {
                               
                               
-                            
-                                ChangeStatus(data:RequestUpdate(Id: item.Id, Status:"Reject"))
+                            print("Reject")
+                                ChangeStatus(data:StatusUpdate(Id: item.Id, Status:"Reject"))
                             }) {
                                 Text("Reject")
                                     .foregroundColor(.white)
@@ -71,7 +74,7 @@ struct RequestListView: View {
 
                             Button(action: {
                                 
-                                ChangeStatus(data:RequestUpdate(Id: item.Id, Status:"Accept"))
+                                ChangeStatus(data:StatusUpdate(Id: item.Id, Status:"Accept"))
                               
                             }) {
                                 Text("Accept")
@@ -92,22 +95,26 @@ struct RequestListView: View {
             }
         }.navigationBarTitle("Requests")
         .onAppear {
-              fetchAssignedMember(userId: userId)
+              fetchAssignedMember(Eventid: Eventid)
         }
         }
+ 
     }
-    func fetchAssignedMember(userId: Int) {
+   
+
+ 
+    func fetchAssignedMember(Eventid: Int) {
         do {
-            let requestData = ["UserId": userId]
+            let requestData = ["Eventid": Eventid]
             let jsonData = try JSONEncoder().encode(requestData)
             let api = APIHelper()
             api.postMethodCall(controllerName: "Main",
-                               actionName: "NotificationToAssignMember", // <-- Update if needed
+                               actionName: "NotificationOfApplyStudent", // <-- Update if needed
                                httpBody: jsonData) { response in
                 if let responseData = response.responseData {
                     DispatchQueue.main.async {
                         do {
-                            let decoded = try JSONDecoder().decode([RequestToMember].self, from: responseData)
+                            let decoded = try JSONDecoder().decode([RequestOfStudent].self, from: responseData)
                             request = decoded
                             print("Decoded requests: \(request)")
                         } catch {
@@ -122,29 +129,33 @@ struct RequestListView: View {
     }
     
     
-    
-    
-    
-    func ChangeStatus(data:RequestUpdate) {
+    func ChangeStatus(data:StatusUpdate) {
         do {
             
             let jsonData = try JSONEncoder().encode(data)
             let api = APIHelper()
             
             api.postMethodCall(controllerName: "Main",
-                               actionName: "RequestAcceptReject", // <-- update to your actual backend function
+                               actionName: "ApplyAcceptReject", // <-- update to your actual backend function
                                httpBody: jsonData) { response in
                 print("Response Message: \(response.responseMessage)")
                 
                 // Optionally, refresh data after status change
                 DispatchQueue.main.async {
-                    fetchAssignedMember(userId: userId)
+                    fetchAssignedMember(Eventid: Eventid)
                 }
             }
         } catch {
             print("Error encoding request: \(error)")
         }
     }
+    
+    
+    
+}
 
-    }
-
+//struct StudentRequestView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StudentRequestView()
+//    }
+//}

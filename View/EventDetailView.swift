@@ -4,7 +4,9 @@
 //
 //  Created by MacBook Pro on 15/04/2025.
 //
-
+struct CountResponse: Codable {
+    let count: String
+}
 import SwiftUI
  
 struct EventDetailView: View {
@@ -27,36 +29,77 @@ struct EventDetailView: View {
     @Binding   var EventEndTime : Date
     @State     var showSuccessAlert = false
     @State     var NavigateToAssignMamber = false
+    @State     var NavigateToCreateTask = false
+    @State     var NavigateToApplyRequest = false
 
     @Binding   var Id:Int
+    @State     var Count=""
     
     var body: some View {
         ZStack {
             // Background Gradient
 //            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.7), Color.purple.opacity(0.5)]), startPoint: .topLeading, endPoint: .bottomTrailing)
 //                .ignoresSafeArea()
+            VStack(spacing:10){
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16) {
+
+                        Button(action: {
+                            UpdateEvent()
+                        }) {
+                            Text("Update")
+                                .foregroundColor(Color.black.opacity(0.6))
+                                .frame(width: 100, height: 30)
+                                .background(Color(.systemGray6))
+                                .cornerRadius(10)
+                        }
+                        .alert(isPresented: $showSuccessAlert) {
+                            Alert(
+                                title: Text("Success"),
+                                message: Text("Your Event has been Updated Successfully!"),
+                                dismissButton: .default(Text("OK"))
+                            )
+                        }
+
+                        Button(action: {
+                            NavigateToCreateTask.toggle()
+                        }) {
+                            Text("AddTask")
+                                .foregroundColor(Color.black.opacity(0.6))
+                                .frame(width: 100, height: 30)
+                                .background(Color(.systemGray6))
+                                .cornerRadius(10)
+                        }
+
+                        Button(action: {
+                            navigateToAssignMamber.toggle()
+                        }) {
+                            Text("AssignMember")
+                                .foregroundColor(Color.black.opacity(0.6))
+                                .frame(width:140, height: 30)
+                                .background(Color(.systemGray6))
+                                .cornerRadius(10)
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+
             
             ScrollView {
               
-                VStack(spacing: 20) {
-                    Text("Create Event")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        .padding(.top, 40)
-
-                    // Title Input Field
+                VStack {
+                  
                     VStack(alignment: .leading) {
                         Text("Event Title")
                             .font(.headline)
                             .foregroundColor(.black)
-                        TextField("Enter title", text: $title)
+                        TextField("Enter Title",text: $title)
                             .padding()
                             .background(Color.white.opacity(4.0))
                             .cornerRadius(12)
                            // .border(.gray, width: 1)
                             .foregroundColor(.black)
-                            .shadow(color:.black.opacity(0.3), radius: 3, x: 1, y: 1)
+                            .shadow(color:.black.opacity(0.1), radius: 1, x: 1, y: 1)
                     }
                   
                  
@@ -170,63 +213,62 @@ struct EventDetailView: View {
 //                            .cornerRadius(12)
                         }
                     }
-                    }.sheet(isPresented: $isImagePickerPresented) {
+                    }
+                    
+                    .sheet(isPresented: $isImagePickerPresented) {
                         CustomImagePicker(contactImage: $contactImage)
                            }
-                   
-                    
-                    // Submit Button
-                    Button(action: {
-                       // AddInListRules()
-                        UpdateEvent()
-                        showSuccessAlert.toggle()
-                    }) {
-                        Text("Update Event")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(.blue)
-                            .cornerRadius(12)
-                            .shadow(radius: 5)
-                    }
-                    .padding(.horizontal)
-                    .alert(isPresented: $showSuccessAlert) {
-                        Alert(
-                            title: Text("Success"),
-                            message: Text("Your Event has been Updated Successfully!"),
-                            dismissButton: .default(Text("OK"))
-                        )
-                    }
-                    .padding(.horizontal)
-                    Button(action: {
-                        navigateToAssignMamber.toggle()
-                    }) {
-                        Text("Assign Member")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(.blue)
-                            .cornerRadius(12)
-                            .shadow(radius: 5)
-                    }
-                    .padding(.horizontal)
+  
+                     
+                }.navigationBarTitle("EventDetail")
                     
                     NavigationLink(destination: CommitteeMemberView(Eventid: $Id), isActive: $navigateToAssignMamber) {
                         EmptyView()
-                    }                }
+                    }
+                    NavigationLink(destination:  TaskCreateView(Eventid: $Id), isActive: $NavigateToCreateTask) {
+                        EmptyView()
+                    }
+                
                 Spacer()
+                
             }
-//            NavigationLink(destination: CommitteeMemberView(), isActive: $navigateToAssignMamber) {
-//                EmptyView()
-//            }
-//            if showEventDate || showRegStartDatePicker || showRegEndDatePicker || showEventStartTimePicker || showEventEndTimePicker {
-//                Color.black.opacity(0.4)
-//                    .edgesIgnoringSafeArea(.all)
-//            }
+            }.onAppear{
+                fetchApplycount(Eventid: Id)
+            }
+         
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        NavigateToApplyRequest.toggle()
+                    },
+                           
+                           label: {
+                        ZStack(alignment: .topTrailing) {
+                            Image(systemName: "bell.fill")
+                                 
+                                .foregroundColor(.blue)
+
+                            Text(Count)
+                                .font(.caption2)
+                                .foregroundColor(.white)
+                                .padding(5)
+                                .background(Color.red)
+                                .clipShape(Circle())
+                                .offset(x: 7, y: -7)
+                        }
+
+                    })
+                    
+
+                }
+                
+                
+                
+                
+            };  NavigationLink(destination:  StudentRequestView(Eventid:$Id), isActive: $NavigateToApplyRequest) {
+                EmptyView()
+            }
+ 
         }
     }
 
@@ -268,12 +310,16 @@ struct EventDetailView: View {
                 api.uploadImages(images: images, parameters: params, endPoint: "Main/UpdateEvent") { response in
                     // Handle the response inside the closure
                     let responseMessage = response.responseMessage
+                    if(response.responseCode==200){
+                        showSuccessAlert=true
+                        
+                    }
                     print("Response Message: \(responseMessage)")
                     
                     // Decode the response data if needed
                     if let responseData = response.responseData {
                         do {
-                            
+                             
                             let events = try JSONDecoder().decode(EventCreate.self, from: responseData)
                             print("Decoded events: \(events)")
                            
@@ -285,7 +331,7 @@ struct EventDetailView: View {
                     
                     // Show success alert
                     DispatchQueue.main.async {
-                        showSuccessAlert.toggle()
+                         
                     }
                 }
             }
@@ -294,7 +340,29 @@ struct EventDetailView: View {
         }
     }
 //
-    
+    func fetchApplycount(Eventid: Int) {
+        let requestData = ["Eventid": Eventid]
+
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: requestData, options: [])
+            let api = APIHelper()
+
+            api.postMethodCall(controllerName: "Main", actionName: "countofapply", httpBody: jsonData) { response in
+                if let responseData = response.responseData {
+                    DispatchQueue.main.async {
+                        if let countString = String(data: responseData, encoding: .utf8) {
+                            self.Count = countString
+                        } else {
+                            print("Failed to convert response to String")
+                        }
+                    }
+                }
+            }
+        } catch {
+            print("Error serializing request: \(error)")
+        }
+    }
+
        
     private var dateFormatter: DateFormatter {
           let formatter = DateFormatter()

@@ -1,6 +1,15 @@
+//
+//  StudentDashboardView.swift
+//  Talent-Hunt
+//
+//  Created by MacBook Pro on 09/05/2025.
+//
+
 import SwiftUI
 //import UIKit
-struct AdminDashboardView: View {
+struct StudentDashboardView: View {
+    
+    @Binding var userid:Int
     @State private var searchQuery = ""
     @State private var navigateToEventCreate = false
     @State private var listofEvent = [EventCreate]()
@@ -30,25 +39,23 @@ struct AdminDashboardView: View {
     var filteredEvents: [EventCreate] {
           filterEvents()
       }
-      
-    
-    
+
     var body: some View {
        
             ZStack {
                 VStack {
                     VStack(spacing: 0) {
-                        // Header with Title & Add Button
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 16) {
+                       
+                            HStack {
                                 Button(action: {
                                     Current = false
                                     All = true
                                     Expired = false
-                                                                    }) {
+                                    Upcoming=false
+                                    }) {
                                     Text("All")
                                         .foregroundColor(All ? .white : Color.black.opacity(0.6))
-                                        .frame(width: 50, height: 30)
+                                        .frame(width: 70, height: 30)
                                         .background(All ? Color.blue.opacity(0.7) : Color(.systemGray6))
                                         .cornerRadius(10)
                                 }
@@ -56,47 +63,45 @@ struct AdminDashboardView: View {
                                     Current = true
                                     All = false
                                     Expired = false
+                                    Upcoming=false
                                 }) {
                                     Text("Current")
                                         .foregroundColor(Current ? .white : Color.black.opacity(0.6))
-                                        .frame(width:80, height: 30)
+                                        .frame(width:100, height: 30)
                                         .background(Current ? Color.blue.opacity(0.7): Color(.systemGray6))
                                         .cornerRadius(10)
                                 }
                                 Button(action: {
                                     Current = false
                                     All = false
+                                    Expired = false
+                                    Upcoming=true
+                                }) {
+                                    Text("Upcoming")
+                                        .foregroundColor(Upcoming ? .white : Color.black.opacity(0.6))
+                                        .frame(width:100, height: 30)
+                                        .background(Upcoming ? Color.blue.opacity(0.7): Color(.systemGray6))
+                                        .cornerRadius(10)
+                                }
+                                Button(action: {
+                                    Current = false
+                                    All = false
                                     Expired = true
+                                    Upcoming=false
                                     
                                 }) {
                                     Text("Expaired")
                                         .foregroundColor(Expired ? .white : Color.black.opacity(0.6))
-                                        .frame(width: 80, height: 30)
+                                        .frame(width:100, height: 30)
                                         .background(Expired ? Color.blue.opacity(0.7) : Color(.systemGray6))
                                         .cornerRadius(10)
                                 }
-                          
-                                Button(action: {
-                                    navigateToAddCommittee.toggle()
-                                }) {
-                                    HStack {
-                                        Text("AddCommittee")
-                                        Image(systemName: "plus.circle.fill")
-                                        .foregroundColor(Color.blue.opacity(1))
-                                    }
-                                    .foregroundColor(Color.black.opacity(0.6))
-                                    .frame(width: 144, height: 30)
-                                    .background(Color(.systemGray6))
-                                    .cornerRadius(10)
-                                }
+                               
+                            
                             }
-                            .padding(.horizontal)
-                        }
-                      
-                        NavigationLink(destination: EventCreateView(), isActive: $navigateToEventCreate) {
-                            EmptyView()
-                        }
-                        // Search Bar
+                            
+                        
+ 
                         VStack {
                             HStack {
                                 TextField("Search Events", text: $searchQuery)
@@ -118,7 +123,6 @@ struct AdminDashboardView: View {
                             hideKeyboard()
                         }
                         // Event List
-                        ZStack(alignment: .bottomTrailing) {
                         List {
                             ForEach(filteredEvents.indices, id: \.self) { index in
                                 let event = filteredEvents[index]
@@ -217,41 +221,28 @@ struct AdminDashboardView: View {
                                 listofEvent.removeAll { idsToDelete.contains($0.Id) }
                             }
                         }
-                            Button(action: {
-                                         navigateToEventCreate.toggle()
-                                     }) {
-                                         Image(systemName: "plus.circle.fill")
-                                              
-                                             .font(.system(size: 50))
-                                             .foregroundColor(.blue)
-                                             
-                                            // .shadow(radius:10)
-                                     }.padding()
-                        }
-                       // Spacer()
+                        Spacer()
                     }
                    
                   
                      NavigationLink(
-                        destination: EventDetailView(
+                        destination: StudentEventDetailView(
                             title: $title,
                             description: $description,
-                            //selectedEventDate: $selectedEventDate,
                             Imageurl: $contactImage,
                             regStartDate: $regStartDate,
                             EventDate: $EventDate,
                             regEndDate: $regEndDate,
                             EventStartTime: $EventStartTime,
-                            EventEndTime: $EventEndTime, Id: $Eventid
+                            EventEndTime: $EventEndTime,
+                            userid:$userid,
+                            Id: $Id
                         ),
                         isActive: $navgatetoEventDetail
                     ) {
                         EmptyView()
                     }
-                    NavigationLink(destination: AddCommitteeMemeberView(), isActive: $navigateToAddCommittee) {
-                        EmptyView()
-
-                        }
+                 
 
                  
                 }
@@ -259,20 +250,10 @@ struct AdminDashboardView: View {
  
                 
             }
-        .navigationBarTitle("Events")
+            .navigationBarTitle("Dashboard")
             .navigationBarBackButtonHidden(true)
            
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-            
-                 
-            
- 
-                
-
-            }
+         
             
    // }
         .onAppear {
@@ -299,7 +280,6 @@ struct AdminDashboardView: View {
             }
         }
     }
-    
     func filterEvents() -> [EventCreate] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M d, yyyy" // Matches "5 3, 2025" format (no leading zero, no month name)
@@ -340,7 +320,6 @@ struct AdminDashboardView: View {
         
         return listofEvent
     }
-    
     func deleteEvent(eventId: Int) {
         do {
             let requestData = ["EventId": eventId]
@@ -361,26 +340,12 @@ struct AdminDashboardView: View {
     }
 }
 
-//struct DrawerMenuItem1: View {
-//    let icon: String
-//    let title: String
-//    let isSelected: Bool
+ 
+
+ 
 //
-//    var body: some View {
-//        HStack {
-//            Image(systemName: icon)
-//                .frame(width: 30)
-//                .foregroundColor(isSelected ? .blue : .gray)
-//            Text(title)
-//                .font(.body)
-//                .foregroundColor(isSelected ? .blue : .black)
-//        }
-//        .padding(.vertical, 10)
+//struct StudentDashboardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StudentDashboardView()
 //    }
 //}
-
-struct AdminDashboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        AdminDashboardView()
-    }
-}

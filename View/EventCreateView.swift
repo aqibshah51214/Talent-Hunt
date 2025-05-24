@@ -6,23 +6,13 @@
 //
 
 import SwiftUI
-
+import UIKit
 struct EventCreateView: View {
     @State private var title = ""
     @State private var description = ""
     @State private var navigateToAssignMamber=false
-//    @State private var sem1 = false
-//    @State private var sem2 = false
-//    @State private var sem3 = false
-//    @State private var sem4 = false
-//    @State private var sem5 = false
-//    @State private var sem6 = false
-    @State private var semester1 = "1st"
-    @State private var semester2 = "2nd"
-    @State private var semester3 = "3rd"
-    @State private var semester4 = "4th"
-    @State private var semester5 = "5th"
-    @State private var semester6 = "6th"
+ 
+   
     @State private var showEventDatePicker = false
     @State private var selectedEventDate = Date()
     @State private var contactImage: UIImage? = nil
@@ -46,19 +36,12 @@ struct EventCreateView: View {
     
     var body: some View {
         ZStack {
-            // Background Gradient
-//            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.7), Color.purple.opacity(0.5)]), startPoint: .topLeading, endPoint: .bottomTrailing)
-//                .ignoresSafeArea()
+ 
             
             ScrollView {
               
                 VStack(spacing: 20) {
-                    Text("Create Event")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        .padding(.top, 40)
-
+                    
                     // Title Input Field
                     VStack(alignment: .leading) {
                         Text("Event Title")
@@ -77,28 +60,7 @@ struct EventCreateView: View {
                   
                     .padding(.horizontal)
 
-                    // Description Input Field
-                 
-
-                    // Rules Checkboxes
-//                    VStack(alignment: .leading, spacing: 10) {
-//                        Text("Rules")
-//                            .font(.headline)
-//                            .foregroundColor(.black)
-//                        HStack {
-//                            CheckboxView(SelectedText: $sem1, text: semester1)
-//                            CheckboxView(SelectedText: $sem2, text: semester2)
-//                            CheckboxView(SelectedText: $sem3, text: semester3)
-//                            CheckboxView(SelectedText: $sem4, text: semester4)
-//                            CheckboxView(SelectedText: $sem5, text: semester5)
-//                            CheckboxView(SelectedText: $sem6, text: semester6)
-//                        }
-//
-//                    }
-//                    .padding()
-//                    .background(Color.white.opacity(0.6))
-//                    .cornerRadius(12)
-//                    .padding(.horizontal)
+        
 //
                     VStack {
                         DatePickerView(title: "Event Date", date: $EventDate, showDatePicker: $showEventDate)
@@ -132,18 +94,18 @@ struct EventCreateView: View {
                     .border(Color.gray, width: 1)
                     .padding()
                     VStack(alignment: .leading) {
-                        Text("Description")
-                            .font(.headline)
-                            .foregroundColor(.black)
-                        TextField("Enter description", text: $description)
-                            .padding()
-                            .background(Color.white.opacity(4.0))
-                            .cornerRadius(12)
-                           // .border(.gray, width: 1)
-                            .foregroundColor(.black)
-                            .shadow(color:.black.opacity(0.3), radius: 3, x: 1, y: 1)
-                    }
-                    .padding(.horizontal)
+                              Text("Description")
+                                .font(.headline)
+                                .foregroundColor(.black)
+                                TextEditor(text: $description)
+                               .frame(height: 150)
+                               .padding(8)
+                               .background(Color.white.opacity(0.2))
+                                .cornerRadius(12)
+                                .foregroundColor(.black)
+                                .shadow(color: .black.opacity(0.5), radius: 3, x: 1, y: 1)
+                                     }
+                                     .padding(.horizontal, 10)
                     VStack {
                         if let image = contactImage {
                             Image(uiImage: image)
@@ -172,47 +134,41 @@ struct EventCreateView: View {
                    
                     
                     // Submit Button
-                    Button(action: {
-                       // AddInListRules()
-                        createEvent()
-                   
-                    }) {
-                        Text("Create Event")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(.blue)
-                            .cornerRadius(12)
-                            .shadow(radius: 5)
-                    }
-                    .padding(.horizontal)
-                    .alert(isPresented: $showSuccessAlert) {
-                        Alert(
-                            title: Text("Success"),
-                            message: Text("Your event has been created successfully!"),
-                            dismissButton: .default(Text("OK"))
-                        )
-                    }
-                    .padding(.horizontal)
+                
+                  
                     
                    
-                }
+                }.navigationBarTitle("Add Event")
                 Spacer()
-            }
-//            NavigationLink(destination: CommitteeMemberView(), isActive: $navigateToAssignMamber) {
-//                EmptyView()
-//            }
-//            if showEventDate || showRegStartDatePicker || showRegEndDatePicker || showEventStartTimePicker || showEventEndTimePicker {
-//                Color.black.opacity(0.4)
-//                    .edgesIgnoringSafeArea(.all)
-//            }
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button(action: {
+                             
+                                createEvent()
+                                
+                            }) {
+                                Text("Add")
+                                    
+                            }
+                            .alert(isPresented: $showSuccessAlert) {
+                                Alert(
+                                    title: Text("Success"),
+                                    message: Text("Your event has been created successfully!"),
+                                    dismissButton: .default(Text("OK"))
+                                )
+                            }
+                            
+                                 
+                        }
+                    }
+            
+           }
+ 
         }
     }
-
+//
     private func createEvent() {
-        
+
         let timeFormatter = DateFormatter()
            timeFormatter.dateFormat = "HH:mm:ss"
         let event = EventCreate(
@@ -226,63 +182,31 @@ struct EventCreateView: View {
             Details: description,
             Image: nil
         )
-        
+
         do {
             // Encode the event to JSON
             let jsonData = try JSONEncoder().encode(event)
             let jsonString = String(data: jsonData, encoding: .utf8)
             print("JSON Sent to API: \(jsonString ?? "Invalid JSON")")
-            
+
             // Prepare parameters for the API call
             var params = [String: String]()
             params["submitInfo"] = jsonString!
-            
+
             let api = APIHelper()
-            
+
             if let contactImage = contactImage {
                 // Create a media image object
                 let mediaImage = Media(withImage: contactImage, forKey: "image", imageName: "event.jpg")
                 var images = [Media]()
                 images.append(mediaImage!)
-                
+
                 // Upload images and handle the response
                 api.uploadImages(images: images, parameters: params, endPoint: "Main/CreateEvent") { response in
-                    // Handle the response inside the closure
-                   // if let responseData = response.responseData {
-                //                        do {
-                //
-                //                            let events = try JSONDecoder().decode(EventCreate.self, from: responseData)
-                //                            print("Decoded events: \(events)")
-                //
-                //                          //  AddRules(eventid: events.Id!, list: listofrules)
-                //
-                //
-                //                            // Perform any additional actions with the decoded data
-                //                            // For example, update the UI or save the data
-                //                        } catch {
-                //                            print("Failed to decode response data: \(error)")
-                //                        }
-                //                    }
+
+
                     print("Response Message: \(response.responseMessage)")
-                    
-                    // Decode the response data if needed
-//                    if let responseData = response.responseData {
-//                        do {
-//
-//                            let events = try JSONDecoder().decode(EventCreate.self, from: responseData)
-//                            print("Decoded events: \(events)")
-//
-//                          //  AddRules(eventid: events.Id!, list: listofrules)
-//
-//
-//                            // Perform any additional actions with the decoded data
-//                            // For example, update the UI or save the data
-//                        } catch {
-//                            print("Failed to decode response data: \(error)")
-//                        }
-//                    }
-                    
-                    // Show success alert
+
                     DispatchQueue.main.async {
                         showSuccessAlert.toggle()
                     }
@@ -292,50 +216,7 @@ struct EventCreateView: View {
             print("Error encoding event: \(error)")
         }
     }
-//    private func AddInListRules() {
-//        if(sem1){
-//            listofrules.append(semester1)
-//        }
-//        if(sem2){
-//            listofrules.append(semester2)
-//        }
-//        if(sem3){
-//            listofrules.append(semester3)
-//        }
-//        if(sem4){
-//            listofrules.append(semester4)
-//        }
-//        if(sem5){
-//            listofrules.append(semester5)
-//        }
-//        if(sem6){
-//            listofrules.append(semester6)
-//        }
-//      }
-//    private func AddRules(eventid:Int,list:[String]) {
-//        let rulesobject=Rules(Id: 0, Eventid: eventid, Rules: list)
-//        do {
-//            let jsonData = try JSONEncoder().encode(rulesobject)
-//            let jsonString = String(data: jsonData, encoding: .utf8)
-//            print("JSON Sent to API: \(jsonString!)")  // Debugging log
-//
-//
-//                let api = APIHelper()
-//
-//                api.postMethodCall(controllerName: "Main", actionName: "AddRules", httpBody: jsonData) { response in
-//
-//                        if response.responseCode == 200 {
-//                            print("Add Successful: \(response.responseMessage)")
-//
-//                        } else {
-//                            print("Failed: \(response.responseMessage)")
-//                        }
-//
-//                }
-//            } catch {
-//                print("Error encoding  Rules: \(error.localizedDescription)")
-//            }
-//    }
+
     private var dateFormatter: DateFormatter {
           let formatter = DateFormatter()
           formatter.dateStyle = .medium

@@ -7,6 +7,8 @@ struct SignUPView: View {
     @State private var password = ""
     @State private var confirmpassword = ""
     @State private var navigateToLogin = false
+    @State private var SignUpsuccess = false
+    @State private var SignUpFailed = false
     
  
     @State private var nameError = ""
@@ -132,10 +134,12 @@ struct SignUPView: View {
                                 print("Full Response: \(response.responseMessage)") // if this has a .responseBody or rawData, print that too
                                 if response.responseCode == 200 {
                                     print("Signup Successful: \(response.responseMessage)")
+                                    SignUpsuccess.toggle()
                                     withAnimation {
                                         navigateToLogin = true
                                     }
                                 } else {
+                                    SignUpFailed.toggle()
                                     print("Signup Failed: \(response.responseMessage)")
                                 }
                             
@@ -159,6 +163,20 @@ struct SignUPView: View {
                 .padding(.horizontal, 25)
                 .padding(.top, 20)
                 .disabled(!emailError.isEmpty || !passwordError.isEmpty || password != confirmpassword)
+                .alert(isPresented: $SignUpsuccess) {
+                    Alert(
+                        title: Text("Success"),
+                        message: Text("You have signup successfully!"),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
+                .alert(isPresented: $SignUpFailed) {
+                    Alert(
+                        title: Text("Failed"),
+                        message: Text(" gmail repeated...!"),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
                 
                 // Already Have an Account?
                 HStack {
